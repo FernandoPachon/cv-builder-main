@@ -8,6 +8,7 @@ import PersonalInfoForm from "./assets/Personalinfoform";
 import ExperienceSection from "./assets/ExperienceSection";
 import EducationSection from "./assets/EducantionSection";
 import SkillsSection from "./assets/Skillsection";
+import DocumentUploadSection from "./assets/Documentuploadsection";
 import CVTemplateClassic from "./assets/CvTemplateClassic";
 import CVTemplateProfessional from "./assets/CvTemplateProfessional";
 import CVTemplateModern from "./assets/CvTemplateModern";
@@ -27,6 +28,12 @@ function App() {
     experiencia: [],
     educacion: [],
     habilidades: [],
+    // Archivos
+    foto: null,
+    cedulaFrente: null,
+    cedulaReverso: null,
+    carnetVacunas: null,
+    certificados: [],
   });
 
   const [style, setStyle] = useState("clasico");
@@ -85,6 +92,8 @@ function App() {
         <EducationSection data={data} setData={setData} />
 
         <SkillsSection data={data} setData={setData} />
+
+        <DocumentUploadSection data={data} setData={setData} />
 
         {/* Selector de Plantilla */}
         <section className="editor-section">

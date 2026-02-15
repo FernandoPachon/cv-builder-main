@@ -18,8 +18,14 @@ function CVTemplateClassic({ data }) {
 
         <div className="hv-photo-section">
           <div className="hv-photo-placeholder">
-            <span>📷</span>
-            <p>Foto 3x4</p>
+            {data.foto ? (
+              <img src={data.foto} alt="Foto" className="hv-photo-img" />
+            ) : (
+              <>
+                <span>📷</span>
+                <p>Foto 3x4</p>
+              </>
+            )}
           </div>
           <div className="hv-contact-box">
             <p>
@@ -280,18 +286,40 @@ function CVTemplateClassic({ data }) {
           <h3>DOCUMENTOS DE IDENTIDAD</h3>
         </div>
 
-        <div className="hv-documents-grid">
-          <div className="hv-document-card">
+        <div className="hv-cedula-stacked">
+          {/* Cédula Frente */}
+          <div className="hv-cedula-card">
             <div className="hv-document-placeholder cedula-frente">
-              <p>📄 CÉDULA</p>
-              <p className="small">Frente</p>
+              {data.cedulaFrente ? (
+                <img
+                  src={data.cedulaFrente}
+                  alt="Cédula Frente"
+                  className="hv-document-img"
+                />
+              ) : (
+                <>
+                  <p>📄 CÉDULA</p>
+                  <p className="small">Frente</p>
+                </>
+              )}
             </div>
           </div>
 
-          <div className="hv-document-card">
+          {/* Cédula Reverso */}
+          <div className="hv-cedula-card">
             <div className="hv-document-placeholder cedula-reverso">
-              <p>📄 CÉDULA</p>
-              <p className="small">Reverso</p>
+              {data.cedulaReverso ? (
+                <img
+                  src={data.cedulaReverso}
+                  alt="Cédula Reverso"
+                  className="hv-document-img"
+                />
+              ) : (
+                <>
+                  <p>📄 CÉDULA</p>
+                  <p className="small">Reverso</p>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -300,24 +328,62 @@ function CVTemplateClassic({ data }) {
       {/* PÁGINA 6 - CERTIFICADOS Y VACUNACIÓN */}
       <div className="hv-page hv-page-6">
         <div className="hv-section-title">
-          <h3>CERTIFICADOS Y DOCUMENTOS ADICIONALES</h3>
+          <h3>ANEXOS</h3>
         </div>
 
         <div className="hv-documents-grid">
           <div className="hv-document-card">
             <div className="hv-document-placeholder carnet-vacunas">
-              <p>💉 CARNET DE VACUNACIÓN</p>
-              <p className="small">MiVacuna</p>
+              {data.carnetVacunas ? (
+                <img
+                  src={data.carnetVacunas}
+                  alt="Carnet de Vacunas"
+                  className="hv-document-img"
+                />
+              ) : (
+                <>
+                  <p>💉 CARNET DE VACUNACIÓN</p>
+                  <p className="small">MiVacuna</p>
+                </>
+              )}
             </div>
           </div>
 
           <div className="hv-document-card">
             <div className="hv-document-placeholder certificado">
-              <p>📜 CERTIFICADOS</p>
-              <p className="small">Laborales/Académicos</p>
+              {data.certificados.length > 0 ? (
+                <img
+                  src={data.certificados[0]}
+                  alt="Certificado"
+                  className="hv-document-img"
+                />
+              ) : (
+                <>
+                  <p>📜 CERTIFICADOS</p>
+                  <p className="small">Laborales/Académicos</p>
+                </>
+              )}
             </div>
           </div>
         </div>
+
+        {/* Mostrar certificados adicionales si hay más de uno */}
+        {data.certificados.length > 1 && (
+          <div className="hv-additional-certificates">
+            <h4>Certificados Adicionales:</h4>
+            <div className="hv-certificates-grid">
+              {data.certificados.slice(1).map((cert, index) => (
+                <div key={index} className="hv-document-placeholder certificado">
+                  <img
+                    src={cert}
+                    alt={`Certificado ${index + 2}`}
+                    className="hv-document-img"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="hv-note">
           <p>

@@ -4,86 +4,103 @@ function CVTemplateProfessional({ data }) {
   return (
     <>
       <div className="cv-sidebar">
-        <div className="cv-profile-photo">👤</div>
-        <h1>{data.nombre || "Tu Nombre"}</h1>
-        <div className="job-title">Software Engineer</div>
-
-        {/* Contacto en Sidebar */}
-        {(data.email || data.telefono || data.ubicacion) && (
-          <div className="cv-sidebar-section">
-            <h2>Contacto</h2>
-            <div className="cv-contact">
-              {data.telefono && <span>📞 {data.telefono}</span>}
-              {data.email && <span>📧 {data.email}</span>}
-              {data.ubicacion && <span>📍 {data.ubicacion}</span>}
-            </div>
-          </div>
-        )}
-
-        {/* Habilidades en Sidebar */}
-        {data.habilidades.length > 0 && (
-          <div className="cv-sidebar-section">
-            <h2>Habilidades</h2>
-            <ul className="cv-sidebar-skills">
-              {data.habilidades.map((skill, index) => (
-                <li key={index}>
-                  <div className="cv-skill">
-                    <span className="skill-name">{skill.nombre}</span>
-                    <span className="skill-level">{skill.nivel}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Idiomas (placeholder) */}
-        <div className="cv-sidebar-section">
-          <h2>Idiomas</h2>
-          <ul className="cv-sidebar-languages">
-            <li>
-              Español <span>Nativo</span>
-            </li>
-            <li>
-              Inglés <span>Avanzado</span>
-            </li>
-          </ul>
+        {/* Foto circular grande */}
+        <div className="cv-profile-photo-pro">
+          {data.foto ? (
+            <img src={data.foto} alt="Foto Perfil" className="cv-photo-img" />
+          ) : (
+            <div className="photo-placeholder-pro">👤</div>
+          )}
         </div>
 
-        {/* Hobbies (placeholder) */}
-        <div className="cv-sidebar-section">
-          <h2>Hobbies</h2>
-          <ul className="cv-sidebar-hobbies">
-            <li>Programación</li>
-            <li>Lectura</li>
-            <li>Música</li>
-          </ul>
+        {/* Sección de Contacto */}
+        <div className="cv-sidebar-section-pro">
+          <h2 className="sidebar-title-pro">CONTACTO</h2>
+          <div className="sidebar-divider-pro"></div>
+          
+          <div className="contact-item-pro">
+            <span className="icon-pro">📞</span>
+            <span>{data.telefono || "(123) 456-7890"}</span>
+          </div>
+          
+          <div className="contact-item-pro">
+            <span className="icon-pro">✉️</span>
+            <span>{data.email || "email@ejemplo.com"}</span>
+          </div>
+          
+          <div className="contact-item-pro">
+            <span className="icon-pro">👤</span>
+            <span>Identificación: {data.cedula || "123456"}</span>
+          </div>
+          
+          <div className="contact-item-pro">
+            <span className="icon-pro">📍</span>
+            <span>{data.ubicacion || "Calle 123, Ciudad"}</span>
+          </div>
+        </div>
+
+        {/* Referencias */}
+        <div className="cv-sidebar-section-pro">
+          <h2 className="sidebar-title-pro">REFERENCIAS</h2>
+          <div className="sidebar-divider-pro"></div>
+          
+          <div className="reference-item-pro">
+            <div className="ref-icon-pro">👤</div>
+            <div>
+              <p className="ref-name-pro">Francisco Mercado</p>
+              <p className="ref-detail-pro">Ensigna</p>
+              <p className="ref-detail-pro">(316) 212-3456</p>
+            </div>
+          </div>
+
+          <div className="reference-item-pro">
+            <div className="ref-icon-pro">👤</div>
+            <div>
+              <p className="ref-name-pro">Pedro Fernández</p>
+              <p className="ref-detail-pro">Borcelle</p>
+              <p className="ref-detail-pro">(316) 212-3456</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Sitio Web */}
+        <div className="cv-sidebar-section-pro">
+          <h2 className="sidebar-title-pro">SITIO WEB</h2>
+          <div className="sidebar-divider-pro"></div>
+          <p className="website-pro">www.unsitioestupendo.com.co</p>
         </div>
       </div>
 
-      <div className="cv-main-content">
-        {/* Perfil */}
+      <div className="cv-main-content-pro">
+        {/* Header con nombre */}
+        <div className="cv-header-pro">
+          <h1 className="cv-name-pro">
+            {data.nombre?.toUpperCase() || "NOMBRE"}<br />
+            {data.apellidos?.toUpperCase() || "APELLIDOS"}
+          </h1>
+          <p className="cv-title-pro">
+            {data.perfil ? data.perfil.split('\n')[0] : "ADMINISTRADOR DE EMPRESAS"}
+          </p>
+          <div className="header-line-pro"></div>
+        </div>
+
+        {/* Sobre Mí / Perfil */}
         {data.perfil && (
-          <div className="cv-section">
-            <h2>Perfil</h2>
-            <p>{data.perfil}</p>
+          <div className="cv-section-pro">
+            <h2 className="section-title-pro">SOBRE MÍ</h2>
+            <p className="section-text-pro">{data.perfil}</p>
           </div>
         )}
 
         {/* Experiencia */}
         {data.experiencia.length > 0 && (
-          <div className="cv-section">
-            <h2>Experiencia Laboral</h2>
+          <div className="cv-section-pro">
+            <h2 className="section-title-pro">EXPERIENCIA</h2>
             {data.experiencia.map((exp, index) => (
-              <div key={index} className="cv-item">
-                <div className="cv-item-header">
-                  <h3>{exp.puesto}</h3>
-                  <span className="cv-date">
-                    {exp.fechaInicio} - {exp.fechaFin}
-                  </span>
-                </div>
-                <h4>{exp.empresa}</h4>
-                <p>{exp.descripcion}</p>
+              <div key={index} className="exp-item-pro">
+                <h3 className="exp-year-pro">{exp.fechaInicio || "2030"}</h3>
+                <h4 className="exp-position-pro">{exp.puesto}</h4>
+                <p className="section-text-pro">{exp.descripcion}</p>
               </div>
             ))}
           </div>
@@ -91,22 +108,40 @@ function CVTemplateProfessional({ data }) {
 
         {/* Educación */}
         {data.educacion.length > 0 && (
-          <div className="cv-section">
-            <h2>Educación</h2>
+          <div className="cv-section-pro">
+            <h2 className="section-title-pro">EDUCACIÓN</h2>
             {data.educacion.map((edu, index) => (
-              <div key={index} className="cv-item">
-                <div className="cv-item-header">
-                  <h3>{edu.titulo}</h3>
-                  <span className="cv-date">
-                    {edu.fechaInicio} - {edu.fechaFin}
-                  </span>
-                </div>
-                <h4>{edu.institucion}</h4>
-                {edu.descripcion && <p>{edu.descripcion}</p>}
+              <div key={index} className="edu-item-pro">
+                <h3 className="edu-year-pro">{edu.fechaInicio || "2030"}</h3>
+                <h4 className="edu-title-pro">{edu.titulo}</h4>
+                <p className="edu-institution-pro">{edu.institucion}</p>
               </div>
             ))}
           </div>
         )}
+
+        {/* Habilidades */}
+        {data.habilidades.length > 0 && (
+          <div className="cv-section-pro">
+            <h2 className="section-title-pro">HABILIDADES</h2>
+            <div className="skills-grid-pro">
+              {data.habilidades.map((skill, index) => (
+                <div key={index} className="skill-item-pro">
+                  {skill.nombre}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Idiomas */}
+        <div className="cv-section-pro">
+          <h2 className="section-title-pro">IDIOMAS</h2>
+          <div className="languages-grid-pro">
+            <span className="language-item-pro">Español</span>
+            <span className="language-item-pro">Inglés</span>
+          </div>
+        </div>
       </div>
     </>
   );
