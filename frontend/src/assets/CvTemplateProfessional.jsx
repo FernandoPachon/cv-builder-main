@@ -1,9 +1,17 @@
 import React from "react";
 
 function CVTemplateProfessional({ data }) {
+  const colorStyles = data.colorScheme
+    ? {
+        "--color-primary": data.colorScheme.primary,
+        "--color-secondary": data.colorScheme.secondary,
+        "--color-accent": data.colorScheme.accent,
+      }
+    : {};
+
   return (
     <>
-      <div className="cv-sidebar">
+      <div className="cv-sidebar" style={colorStyles}>
         {/* Foto circular grande */}
         <div className="cv-profile-photo-pro">
           {data.foto ? (
@@ -71,7 +79,7 @@ function CVTemplateProfessional({ data }) {
         </div>
       </div>
 
-      <div className="cv-main-content-pro">
+      <div className="cv-main-content-pro" style={colorStyles}>
         {/* Header con nombre */}
         <div className="cv-header-pro">
           <h1 className="cv-name-pro">
@@ -142,6 +150,58 @@ function CVTemplateProfessional({ data }) {
             <span className="language-item-pro">Inglés</span>
           </div>
         </div>
+
+        {/* Anexos / Documentos */}
+        {(data.cedulaFrente ||
+          data.cedulaReverso ||
+          data.carnetVacunas ||
+          data.certificados.length > 0) && (
+          <div className="cv-section-pro">
+            <h2 className="section-title-pro">ANEXOS Y DOCUMENTOS</h2>
+            <div className="cv-documents-grid-pro">
+              {data.cedulaFrente && (
+                <div className="cv-document-item-pro">
+                  <h4>Cédula (Frente)</h4>
+                  <img
+                    src={data.cedulaFrente}
+                    alt="Cédula Frente"
+                    className="cv-document-img-pro"
+                  />
+                </div>
+              )}
+              {data.cedulaReverso && (
+                <div className="cv-document-item-pro">
+                  <h4>Cédula (Reverso)</h4>
+                  <img
+                    src={data.cedulaReverso}
+                    alt="Cédula Reverso"
+                    className="cv-document-img-pro"
+                  />
+                </div>
+              )}
+              {data.carnetVacunas && (
+                <div className="cv-document-item-pro">
+                  <h4>Carnet de Vacunación</h4>
+                  <img
+                    src={data.carnetVacunas}
+                    alt="Carnet"
+                    className="cv-document-img-pro"
+                  />
+                </div>
+              )}
+              {data.certificados.map((cert, index) => (
+                <div key={index} className="cv-document-item-pro">
+                  <h4>Certificado {index + 1}</h4>
+                  <img
+                    src={cert}
+                    alt={`Certificado ${index + 1}`}
+                    className="cv-document-img-pro"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

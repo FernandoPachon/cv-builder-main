@@ -12,6 +12,7 @@ import DocumentUploadSection from "./assets/Documentuploadsection";
 import CVTemplateClassic from "./assets/CvTemplateClassic";
 import CVTemplateProfessional from "./assets/CvTemplateProfessional";
 import CVTemplateModern from "./assets/CvTemplateModern";
+import ColorSelector from "./assets/ColorSelector";
 
 function App() {
   const [data, setData] = useState({
@@ -34,6 +35,13 @@ function App() {
     cedulaReverso: null,
     carnetVacunas: null,
     certificados: [],
+    // Colores
+    colorScheme: {
+      name: "Azul Profesional",
+      primary: "#2c3e50",
+      secondary: "#3498db",
+      accent: "#2980b9",
+    },
   });
 
   const [style, setStyle] = useState("clasico");
@@ -54,7 +62,7 @@ function App() {
 
   const descargarPDF = () => {
     const opciones = {
-      margin: 10,
+      margin: [5, 5, 5, 5], // Márgenes más pequeños
       filename:
         "CV_" +
         (data.nombre && data.apellidos
@@ -62,9 +70,24 @@ function App() {
           : "HojaDeVida"
         ).replace(/\s+/g, "_") +
         ".pdf",
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "mm", format: "letter", orientation: "portrait" },
+      image: { type: "jpeg", quality: 0.95 },
+      html2canvas: { 
+        scale: 2,
+        useCORS: true,
+        letterRendering: true,
+        scrollY: 0,
+        scrollX: 0
+      },
+      jsPDF: { 
+        unit: "mm", 
+        format: "letter", 
+        orientation: "portrait",
+        compress: true
+      },
+      pagebreak: { 
+        mode: ['avoid-all', 'css', 'legacy'],
+        after: '.hv-page'
+      }
     };
     html2pdf().set(opciones).from(cvRef.current).save();
   };
@@ -94,6 +117,8 @@ function App() {
         <SkillsSection data={data} setData={setData} />
 
         <DocumentUploadSection data={data} setData={setData} />
+
+        <ColorSelector data={data} setData={setData} style={style} />
 
         {/* Selector de Plantilla */}
         <section className="editor-section">

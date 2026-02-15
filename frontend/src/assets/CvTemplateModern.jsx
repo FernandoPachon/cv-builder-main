@@ -5,7 +5,7 @@ function CVTemplateModern({ data }) {
     <>
       {/* Header */}
       <div className="cv-header">
-        <h1>{data.nombre || "Tu Nombre"}</h1>
+        <h1>{data.nombre && data.apellidos ? `${data.nombre} ${data.apellidos}` : data.nombre || "Tu Nombre"}</h1>
         <div className="cv-contact">
           {data.email && <span>📧 {data.email}</span>}
           {data.telefono && <span>📱 {data.telefono}</span>}
@@ -68,6 +68,58 @@ function CVTemplateModern({ data }) {
               <div key={index} className="cv-skill">
                 <span className="skill-name">{skill.nombre}</span>
                 <span className="skill-level">{skill.nivel}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Anexos / Documentos */}
+      {(data.cedulaFrente ||
+        data.cedulaReverso ||
+        data.carnetVacunas ||
+        data.certificados.length > 0) && (
+        <div className="cv-section">
+          <h2>Anexos y Documentos</h2>
+          <div className="cv-documents-grid-modern">
+            {data.cedulaFrente && (
+              <div className="cv-document-item">
+                <h4>Cédula (Frente)</h4>
+                <img
+                  src={data.cedulaFrente}
+                  alt="Cédula Frente"
+                  className="cv-document-img-modern"
+                />
+              </div>
+            )}
+            {data.cedulaReverso && (
+              <div className="cv-document-item">
+                <h4>Cédula (Reverso)</h4>
+                <img
+                  src={data.cedulaReverso}
+                  alt="Cédula Reverso"
+                  className="cv-document-img-modern"
+                />
+              </div>
+            )}
+            {data.carnetVacunas && (
+              <div className="cv-document-item">
+                <h4>Carnet de Vacunación</h4>
+                <img
+                  src={data.carnetVacunas}
+                  alt="Carnet"
+                  className="cv-document-img-modern"
+                />
+              </div>
+            )}
+            {data.certificados.map((cert, index) => (
+              <div key={index} className="cv-document-item">
+                <h4>Certificado {index + 1}</h4>
+                <img
+                  src={cert}
+                  alt={`Certificado ${index + 1}`}
+                  className="cv-document-img-modern"
+                />
               </div>
             ))}
           </div>

@@ -5,39 +5,75 @@ function CVTemplateClassic({ data }) {
     <div className="hoja-vida-colombiana">
       {/* PÁGINA 1 - HOJA DE VIDA */}
       <div className="hv-page hv-page-1">
-        <div className="hv-header">
-          <h1>Hoja de Vida</h1>
-        </div>
-        <div className="hv-name-banner">
-          <h2>
-            {data.nombre && data.apellidos
-              ? `${data.nombre} ${data.apellidos}`
-              : "Nombre Completo"}
-          </h2>
+        {/* Bordes laterales decorativos */}
+        <div className="hv-page-borders">
+          <div className="hv-border-left"></div>
+          <div className="hv-border-right"></div>
         </div>
 
-        <div className="hv-photo-section">
-          <div className="hv-photo-placeholder">
-            {data.foto ? (
-              <img src={data.foto} alt="Foto" className="hv-photo-img" />
-            ) : (
-              <>
-                <span>📷</span>
-                <p>Foto 3x4</p>
-              </>
-            )}
+        <div className="hv-page-content">
+          {/* Header superior gris */}
+          <div className="hv-top-bar"></div>
+
+          {/* Header "Hoja de Vida" */}
+          <div className="hv-header-new">
+            <h1>Hoja de Vida</h1>
           </div>
-          <div className="hv-contact-box">
-            <p>
-              <strong>CC:</strong> {data.cedula || "1.234.567.890"}
-            </p>
-            <p>
-              <strong>Cel:</strong> {data.telefono || "321 123 4567"}
-            </p>
-            <p>
-              <strong>Email:</strong> {data.email || "correo@ejemplo.com"}
-            </p>
+
+          {/* Banner con nombre */}
+          <div className="hv-name-banner-new">
+            <h2>
+              {data.nombre && data.apellidos
+                ? `${data.nombre} ${data.apellidos}`
+                : "Nombre Completo"}
+            </h2>
           </div>
+
+          {/* Contenedor principal con foto y datos */}
+          <div className="hv-main-container">
+            {/* Foto a la izquierda */}
+            <div className="hv-photo-container-new">
+              <div className="hv-photo-frame">
+                {data.foto ? (
+                  <img
+                    src={data.foto}
+                    alt="Foto"
+                    className="hv-photo-img-new"
+                  />
+                ) : (
+                  <div className="hv-photo-placeholder-new">
+                    <span>📷</span>
+                    <p>Foto 3x4</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Cuadro de información a la derecha */}
+            <div className="hv-info-box-new">
+              <div className="hv-info-row">
+                <span className="hv-info-label">CC:</span>
+                <span className="hv-info-value">
+                  {data.cedula || "1.234.567.890"}
+                </span>
+              </div>
+              <div className="hv-info-row">
+                <span className="hv-info-label">Teléfono:</span>
+                <span className="hv-info-value">
+                  {data.telefono || "321 123 4567"}
+                </span>
+              </div>
+              <div className="hv-info-row">
+                <span className="hv-info-label">Email:</span>
+                <span className="hv-info-value">
+                  {data.email || "correo@ejemplo.com"}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Barra inferior gris */}
+          <div className="hv-bottom-bar"></div>
         </div>
       </div>
 
@@ -328,7 +364,7 @@ function CVTemplateClassic({ data }) {
       {/* PÁGINA 6 - CERTIFICADOS Y VACUNACIÓN */}
       <div className="hv-page hv-page-6">
         <div className="hv-section-title">
-          <h3>ANEXOS</h3>
+          <h3>CERTIFICADOS Y DOCUMENTOS ADICIONALES</h3>
         </div>
 
         <div className="hv-documents-grid">
