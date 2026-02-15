@@ -31,10 +31,7 @@ function App() {
     habilidades: [],
     // Archivos
     foto: null,
-    cedulaFrente: null,
-    cedulaReverso: null,
-    carnetVacunas: null,
-    certificados: [],
+    documentosAnexos: [], // Array de documentos (simple o doble cara)
     // Colores
     colorScheme: {
       name: "Azul Profesional",
@@ -62,7 +59,7 @@ function App() {
 
   const descargarPDF = () => {
     const opciones = {
-      margin: [5, 5, 5, 5], // Márgenes más pequeños
+      margin: [3, 3, 3, 3], // Márgenes pequeños
       filename:
         "CV_" +
         (data.nombre && data.apellidos
@@ -76,11 +73,13 @@ function App() {
         useCORS: true,
         letterRendering: true,
         scrollY: 0,
-        scrollX: 0
+        scrollX: 0,
+        width: 612,
+        windowWidth: 612
       },
       jsPDF: { 
-        unit: "mm", 
-        format: "letter", 
+        unit: "px", 
+        format: [612, 792], // Formato carta exacto en píxeles
         orientation: "portrait",
         compress: true
       },
