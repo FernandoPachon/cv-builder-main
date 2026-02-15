@@ -150,59 +150,89 @@ function CVTemplateProfessional({ data }) {
             <span className="language-item-pro">Inglés</span>
           </div>
         </div>
-
-        {/* Anexos / Documentos */}
-        {(data.cedulaFrente ||
-          data.cedulaReverso ||
-          data.carnetVacunas ||
-          data.certificados.length > 0) && (
-          <div className="cv-section-pro">
-            <h2 className="section-title-pro">ANEXOS Y DOCUMENTOS</h2>
-            <div className="cv-documents-grid-pro">
-              {data.cedulaFrente && (
-                <div className="cv-document-item-pro">
-                  <h4>Cédula (Frente)</h4>
-                  <img
-                    src={data.cedulaFrente}
-                    alt="Cédula Frente"
-                    className="cv-document-img-pro"
-                  />
-                </div>
-              )}
-              {data.cedulaReverso && (
-                <div className="cv-document-item-pro">
-                  <h4>Cédula (Reverso)</h4>
-                  <img
-                    src={data.cedulaReverso}
-                    alt="Cédula Reverso"
-                    className="cv-document-img-pro"
-                  />
-                </div>
-              )}
-              {data.carnetVacunas && (
-                <div className="cv-document-item-pro">
-                  <h4>Carnet de Vacunación</h4>
-                  <img
-                    src={data.carnetVacunas}
-                    alt="Carnet"
-                    className="cv-document-img-pro"
-                  />
-                </div>
-              )}
-              {data.certificados.map((cert, index) => (
-                <div key={index} className="cv-document-item-pro">
-                  <h4>Certificado {index + 1}</h4>
-                  <img
-                    src={cert}
-                    alt={`Certificado ${index + 1}`}
-                    className="cv-document-img-pro"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* PÁGINAS DE DOCUMENTOS ANEXOS - Igual que en clásico */}
+      {data.documentosAnexos && data.documentosAnexos.length > 0 && (
+        <>
+          {data.documentosAnexos.map((doc) => {
+            if (doc.tipo === "doble") {
+              // Documento de 2 caras - página separada
+              return (
+                <div key={doc.id} className="profesional-anexo-page" style={colorStyles}>
+                  <div className="profesional-anexo-header">
+                    <h2>{doc.nombre.toUpperCase()}</h2>
+                  </div>
+
+                  <div className="profesional-documents-stack">
+                    {/* Frente */}
+                    <div className="profesional-document-item">
+                      <p className="profesional-doc-label">FRENTE</p>
+                      <div className="profesional-document-container">
+                        {doc.frente ? (
+                          <img
+                            src={doc.frente}
+                            alt={`${doc.nombre} Frente`}
+                            className="profesional-document-img"
+                          />
+                        ) : (
+                          <div className="profesional-placeholder">
+                            <p>📄 {doc.nombre.toUpperCase()}</p>
+                            <p className="small">Frente</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Reverso */}
+                    <div className="profesional-document-item">
+                      <p className="profesional-doc-label">REVERSO</p>
+                      <div className="profesional-document-container">
+                        {doc.reverso ? (
+                          <img
+                            src={doc.reverso}
+                            alt={`${doc.nombre} Reverso`}
+                            className="profesional-document-img"
+                          />
+                        ) : (
+                          <div className="profesional-placeholder">
+                            <p>📄 {doc.nombre.toUpperCase()}</p>
+                            <p className="small">Reverso</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            } else {
+              // Documento de 1 cara - página completa
+              return (
+                <div key={doc.id} className="profesional-anexo-page-full" style={colorStyles}>
+                  <div className="profesional-anexo-header">
+                    <h2>{doc.nombre.toUpperCase()}</h2>
+                  </div>
+
+                  <div className="profesional-document-full">
+                    {doc.imagen ? (
+                      <img
+                        src={doc.imagen}
+                        alt={doc.nombre}
+                        className="profesional-document-img-full"
+                      />
+                    ) : (
+                      <div className="profesional-placeholder-full">
+                        <p>📄 {doc.nombre.toUpperCase()}</p>
+                        <p className="small">Página Completa</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            }
+          })}
+        </>
+      )}
     </>
   );
 }

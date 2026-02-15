@@ -316,118 +316,87 @@ function CVTemplateClassic({ data }) {
         </div>
       </div>
 
-      {/* PÁGINA 5 - DOCUMENTOS DE IDENTIDAD */}
-      <div className="hv-page hv-page-5">
-        <div className="hv-section-title">
-          <h3>DOCUMENTOS DE IDENTIDAD</h3>
-        </div>
+      {/* PÁGINAS 5+ - DOCUMENTOS ANEXOS DINÁMICOS */}
+      {data.documentosAnexos && data.documentosAnexos.length > 0 && (
+        <>
+          {data.documentosAnexos.map((doc) => {
+            if (doc.tipo === "doble") {
+              // Documento de 2 caras - mostrar apilados verticalmente
+              return (
+                <div key={doc.id} className="hv-page hv-page-anexo">
+                  <div className="hv-section-title">
+                    <h3>{doc.nombre.toUpperCase()}</h3>
+                  </div>
 
-        <div className="hv-cedula-stacked">
-          {/* Cédula Frente */}
-          <div className="hv-cedula-card">
-            <div className="hv-document-placeholder cedula-frente">
-              {data.cedulaFrente ? (
-                <img
-                  src={data.cedulaFrente}
-                  alt="Cédula Frente"
-                  className="hv-document-img"
-                />
-              ) : (
-                <>
-                  <p>📄 CÉDULA</p>
-                  <p className="small">Frente</p>
-                </>
-              )}
-            </div>
-          </div>
+                  <div className="hv-documents-grid">
+                    {/* Frente */}
+                    <div className="hv-document-card">
+                      <p className="doc-label">FRENTE</p>
+                      <div className="hv-document-placeholder">
+                        {doc.frente ? (
+                          <img
+                            src={doc.frente}
+                            alt={`${doc.nombre} Frente`}
+                            className="hv-document-img"
+                          />
+                        ) : (
+                          <>
+                            <p>📄 {doc.nombre.toUpperCase()}</p>
+                            <p className="small">Frente</p>
+                          </>
+                        )}
+                      </div>
+                    </div>
 
-          {/* Cédula Reverso */}
-          <div className="hv-cedula-card">
-            <div className="hv-document-placeholder cedula-reverso">
-              {data.cedulaReverso ? (
-                <img
-                  src={data.cedulaReverso}
-                  alt="Cédula Reverso"
-                  className="hv-document-img"
-                />
-              ) : (
-                <>
-                  <p>📄 CÉDULA</p>
-                  <p className="small">Reverso</p>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* PÁGINA 6 - CERTIFICADOS Y VACUNACIÓN */}
-      <div className="hv-page hv-page-6">
-        <div className="hv-section-title">
-          <h3>CERTIFICADOS Y DOCUMENTOS ADICIONALES</h3>
-        </div>
-
-        <div className="hv-documents-grid">
-          <div className="hv-document-card">
-            <div className="hv-document-placeholder carnet-vacunas">
-              {data.carnetVacunas ? (
-                <img
-                  src={data.carnetVacunas}
-                  alt="Carnet de Vacunas"
-                  className="hv-document-img"
-                />
-              ) : (
-                <>
-                  <p>💉 CARNET DE VACUNACIÓN</p>
-                  <p className="small">MiVacuna</p>
-                </>
-              )}
-            </div>
-          </div>
-
-          <div className="hv-document-card">
-            <div className="hv-document-placeholder certificado">
-              {data.certificados.length > 0 ? (
-                <img
-                  src={data.certificados[0]}
-                  alt="Certificado"
-                  className="hv-document-img"
-                />
-              ) : (
-                <>
-                  <p>📜 CERTIFICADOS</p>
-                  <p className="small">Laborales/Académicos</p>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Mostrar certificados adicionales si hay más de uno */}
-        {data.certificados.length > 1 && (
-          <div className="hv-additional-certificates">
-            <h4>Certificados Adicionales:</h4>
-            <div className="hv-certificates-grid">
-              {data.certificados.slice(1).map((cert, index) => (
-                <div key={index} className="hv-document-placeholder certificado">
-                  <img
-                    src={cert}
-                    alt={`Certificado ${index + 2}`}
-                    className="hv-document-img"
-                  />
+                    {/* Reverso */}
+                    <div className="hv-document-card">
+                      <p className="doc-label">REVERSO</p>
+                      <div className="hv-document-placeholder">
+                        {doc.reverso ? (
+                          <img
+                            src={doc.reverso}
+                            alt={`${doc.nombre} Reverso`}
+                            className="hv-document-img"
+                          />
+                        ) : (
+                          <>
+                            <p>📄 {doc.nombre.toUpperCase()}</p>
+                            <p className="small">Reverso</p>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
+              );
+            } else {
+              // Documento de 1 cara - página completa
+              return (
+                <div key={doc.id} className="hv-page hv-page-anexo-full">
+                  <div className="hv-section-title-simple">
+                    <h3>{doc.nombre.toUpperCase()}</h3>
+                  </div>
 
-        <div className="hv-note">
-          <p>
-            <strong>Nota:</strong> Los documentos escaneados deben ser legibles
-            y en formato PDF o imagen de alta calidad.
-          </p>
-        </div>
-      </div>
+                  <div className="hv-document-full-container">
+                    {doc.imagen ? (
+                      <img
+                        src={doc.imagen}
+                        alt={doc.nombre}
+                        className="hv-document-img-full"
+                      />
+                    ) : (
+                      <div className="hv-document-placeholder-full">
+                        <p>📄 {doc.nombre.toUpperCase()}</p>
+                        <p className="small">Página Completa</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            }
+          })}
+        </>
+      )}
     </div>
   );
 }
