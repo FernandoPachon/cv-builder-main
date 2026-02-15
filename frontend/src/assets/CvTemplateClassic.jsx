@@ -1,24 +1,17 @@
 import React from "react";
 
-function CVTemplateClassic({ data }) {
+function CVTemplateClassic({ data, backgroundImage }) {
   return (
     <div className="hoja-vida-colombiana">
       {/* PÁGINA 1 - HOJA DE VIDA */}
-      <div className="hv-page hv-page-1">
-        {/* Bordes laterales decorativos */}
-        <div className="hv-page-borders">
-          <div className="hv-border-left"></div>
-          <div className="hv-border-right"></div>
-        </div>
+      <div 
+        className="hv-page hv-page-1"
+        style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {}}
+      >
+        
 
         <div className="hv-page-content">
-          {/* Header superior gris */}
-          <div className="hv-top-bar"></div>
-
-          {/* Header "Hoja de Vida" */}
-          <div className="hv-header-new">
-            <h1>Hoja de Vida</h1>
-          </div>
+        
 
           {/* Banner con nombre */}
           <div className="hv-name-banner-new">
