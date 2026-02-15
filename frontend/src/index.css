@@ -1,0 +1,11 @@
+.clasico {
+  font-family: Arial;
+  color: black;
+}
+
+.moderno {
+  font-family: Helvetica;
+  color: darkblue;
+  border-left: 5px solid blue;
+  padding: 20px;
+}
