@@ -13,6 +13,14 @@ import CVTemplateClassic from "./assets/CvTemplateClassic";
 import CVTemplateProfessional from "./assets/CvTemplateProfessional";
 import CVTemplateModern from "./assets/CvTemplateModern";
 import ColorSelector from "./assets/ColorSelector";
+// Importar imagen de fondo para página 1 del clásico
+let HvPortalBg;
+try {
+  HvPortalBg = require('./assets/HvPortal.jpeg');
+} catch (e) {
+  // Si la imagen no se encuentra, el CSS usará la ruta por defecto
+  console.log('Imagen HvPortal.jpeg no encontrada, usando ruta CSS');
+}
 
 function App() {
   const [data, setData] = useState({
@@ -152,7 +160,7 @@ function App() {
         <div className="cv-preview-container">
           <div ref={cvRef} className={`cv-template ${style}`}>
             {style === "clasico" ? (
-              <CVTemplateClassic data={data} />
+              <CVTemplateClassic data={data} backgroundImage={HvPortalBg} />
             ) : style === "profesional" ? (
               <CVTemplateProfessional data={data} />
             ) : (
