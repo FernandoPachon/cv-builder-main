@@ -11,6 +11,8 @@ function CVTemplateProfessional({ data }) {
 
   return (
     <>
+      {/* PÁGINA PRINCIPAL: sidebar + contenido dentro del grid */}
+      <div className="pro-cv-page" style={colorStyles}>
       <div className="cv-sidebar" style={colorStyles}>
         {/* Foto circular grande */}
         <div className="cv-profile-photo-pro">
@@ -75,7 +77,7 @@ function CVTemplateProfessional({ data }) {
         <div className="cv-sidebar-section-pro">
           <h2 className="sidebar-title-pro">SITIO WEB</h2>
           <div className="sidebar-divider-pro"></div>
-          <p className="website-pro">www.unsitioestupendo.com.co</p>
+          <p className="website-pro">www.ofipapeleria.com.co</p>
         </div>
       </div>
 
@@ -152,7 +154,9 @@ function CVTemplateProfessional({ data }) {
         </div>
       </div>
 
-      {/* PÁGINAS DE DOCUMENTOS ANEXOS - Igual que en clásico */}
+      </div>{/* fin pro-cv-page */}
+
+      {/* PÁGINAS DE DOCUMENTOS ANEXOS - fuera del grid */}
       {data.documentosAnexos && data.documentosAnexos.length > 0 && (
         <>
           {data.documentosAnexos.map((doc) => {

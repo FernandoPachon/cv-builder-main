@@ -27,6 +27,7 @@ function App() {
     nombre: "",
     apellidos: "",
     cedula: "",
+    lugarNacimiento:"",
     fechaNacimiento: "",
     estadoCivil: "Soltero",
     email: "",
@@ -65,40 +66,32 @@ function App() {
     }
   };
 
-  const descargarPDF = () => {
-    const opciones = {
-      margin: [3, 3, 3, 3], // Márgenes pequeños
-      filename:
-        "CV_" +
-        (data.nombre && data.apellidos
-          ? `${data.nombre}_${data.apellidos}`
-          : "HojaDeVida"
-        ).replace(/\s+/g, "_") +
-        ".pdf",
-      image: { type: "jpeg", quality: 0.95 },
-      html2canvas: { 
-        scale: 2,
-        useCORS: true,
-        letterRendering: true,
-        scrollY: 0,
-        scrollX: 0,
-        width: 612,
-        windowWidth: 612
-      },
-      jsPDF: { 
-        unit: "px", 
-        format: [612, 792], // Formato carta exacto en píxeles
-        orientation: "portrait",
-        compress: true
-      },
-      pagebreak: { 
-        mode: ['avoid-all', 'css', 'legacy'],
-        after: '.hv-page'
-      }
-    };
-    html2pdf().set(opciones).from(cvRef.current).save();
+const descargarPDF = () => {
+  const opciones = {
+    margin: 0,
+    filename: `CV_${data.nombre}_${data.apellidos}.pdf`,
+    image: { type: "jpeg", quality: 1.0 },
+    html2canvas: {
+      scale: 3,
+      useCORS: true,
+      allowTaint: true,
+      scrollY: 0,
+      scrollX: 0,
+      logging: false,
+    },
+    jsPDF: {
+      unit: "px",
+      format: [612, 792],
+      orientation: "portrait",
+      hotfixes: ["px_scaling"],
+    },
+    pagebreak: {
+      mode: ["css", "legacy"],
+      after: ".hv-clasica-page",
+    },
   };
-
+  html2pdf().set(opciones).from(cvRef.current).save();
+};
   return (
     <div className="app-container">
       {/* Panel de edición */}
