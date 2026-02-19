@@ -1,5 +1,26 @@
 import React from "react";
 
+const MESES = [
+  "enero", "febrero", "marzo", "abril", "mayo", "junio",
+  "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+];
+
+function formatearFecha(valorISO) {
+  if (!valorISO) return "";
+  const [anio, mes, dia] = valorISO.split("-");
+  return `${parseInt(dia)} de ${MESES[parseInt(mes) - 1]} de ${anio}`;
+}
+
+function fechaAISO(textoFecha) {
+  // Convierte "5 de noviembre de 1996" → "1996-11-05" para el input
+  if (!textoFecha || textoFecha.includes("-")) return textoFecha;
+  const match = textoFecha.match(/(\d+) de (\w+) de (\d{4})/i);
+  if (!match) return "";
+  const dia = match[1].padStart(2, "0");
+  const mes = (MESES.indexOf(match[2].toLowerCase()) + 1).toString().padStart(2, "0");
+  return `${match[3]}-${mes}-${dia}`;
+}
+
 function PersonalInfoForm({ data, setData }) {
   return (
     <section className="editor-section">
@@ -22,12 +43,20 @@ function PersonalInfoForm({ data, setData }) {
         value={data.cedula}
         onChange={(e) => setData({ ...data, cedula: e.target.value })}
       />
+      <label style={{fontSize:"13px", fontWeight:"600", color:"#34495e", marginBottom:"4px", display:"block"}}>
+        Fecha de Nacimiento
+      </label>
       <input
-        type="text"
-        placeholder="Fecha de Nacimiento (ej: 15 de Marzo de 1990)"
-        value={data.fechaNacimiento}
-        onChange={(e) => setData({ ...data, fechaNacimiento: e.target.value })}
+        type="date"
+        value={fechaAISO(data.fechaNacimiento)}
+        onChange={(e) => setData({ ...data, fechaNacimiento: formatearFecha(e.target.value) })}
+        style={{marginBottom:"12px"}}
       />
+      {data.fechaNacimiento && (
+        <small style={{display:"block", marginTop:"-8px", marginBottom:"12px", color:"#7f8c8d", fontSize:"12px"}}>
+          📅 Se guardará como: <strong>{data.fechaNacimiento}</strong>
+        </small>
+      )}
       <select
         value={data.estadoCivil}
         onChange={(e) => setData({ ...data, estadoCivil: e.target.value })}

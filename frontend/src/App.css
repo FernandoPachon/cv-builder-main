@@ -1573,7 +1573,12 @@ body {
   font-weight: normal;
   color: #000;
 }
-
+.hv-data-value--name {
+  flex: 1;
+  font-weight: normal;
+  color: #000;
+  text-transform: uppercase;
+}
 .hv-bold { font-weight: bold; }
 
 /* Educación */

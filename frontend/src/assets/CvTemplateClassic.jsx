@@ -81,12 +81,12 @@ function CVTemplateClassic({ data, backgroundImage }) {
           <div className="hv-section-content">
             <div className="hv-data-row">
               <span className="hv-data-label">NOMBRES:</span>
-              <span className="hv-data-value">{data.nombre || "YERLI DISENEY"}</span>
+              <span className="hv-data-value--name">{data.nombre || "YERLI DISENEY"}</span>
             </div>
 
             <div className="hv-data-row">
               <span className="hv-data-label">APELLIDOS:</span>
-              <span className="hv-data-value">{data.apellidos || "BONILLA VEGA"}</span>
+              <span className="hv-data-value--name">{data.apellidos || "BONILLA VEGA"}</span>
             </div>
 
             <div className="hv-data-row">
