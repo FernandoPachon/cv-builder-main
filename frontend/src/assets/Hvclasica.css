@@ -1,0 +1,351 @@
+/* ============= HOJA DE VIDA CLÁSICA COLOMBIANA ============= */
+
+.hv-clasica-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.hv-clasica-page {
+  background: white;
+  width: 612px;
+  height: 792px;
+  margin: 20px auto;
+  padding: 72px 86px; /* Top/Bottom ~1inch, Left/Right ~1.2inch */
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  page-break-after: always;
+  overflow: hidden;
+}
+
+/* ============= ENCABEZADO "HOJA DE VIDA" ============= */
+.hv-header-table {
+  width: 100%;
+  background: #CCCCCC;
+  padding: 8px 0;
+  text-align: center;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+}
+
+.hv-header-table h1 {
+  margin: 0;
+  font-family: 'Monotype Corsiva', cursive, 'Brush Script MT', 'Lucida Handwriting';
+  font-size: 35px;
+  font-weight: bold;
+  font-style: italic;
+  color: white;
+}
+
+/* ============= ELEMENTOS DECORATIVOS ============= */
+.hv-circle-decoration {
+  position: absolute;
+  left: -5px;
+  top: 85px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #969696;
+  opacity: 0.6;
+}
+
+.hv-vertical-line {
+  position: absolute;
+  left: 22px;
+  top: 80px;
+  width: 2.25px;
+  height: 504px;
+  background: #000;
+}
+
+.hv-horizontal-line {
+  position: absolute;
+  left: 85px;
+  top: 110px;
+  width: 486px;
+  height: 4.5px;
+  background: #000;
+}
+
+/* ============= NOMBRE PRINCIPAL ============= */
+.hv-main-name {
+  font-family: 'Monotype Corsiva', cursive, 'Brush Script MT', 'Lucida Handwriting';
+  font-size: 30px;
+  font-weight: bold;
+  text-align: right;
+  margin: 15px 0 25px 0;
+  color: #000;
+}
+
+/* ============= MARCO Y FOTO ============= */
+.hv-photo-frame {
+  position: relative;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.hv-photo-container {
+  position: absolute;
+  right: 60px;
+  top: 10px;
+  width: 145px;
+  height: 188px;
+  border: 1px solid ;
+  background: #f0f0f0;
+  box-shadow: 6px 6px 8px rgba(51, 51, 51, 0.5);
+  overflow: hidden;
+}
+
+.hv-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hv-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0e0e0;
+  color: #666;
+  font-size: 16px;
+}
+
+/* ============= RECUADRO DE INFORMACIÓN PERSONAL ============= */
+.hv-info-box {
+  position: absolute;
+  right: 55px;
+  top: 15px;
+  width: 252px;
+  padding: 10px 15px;
+  font-family: 'Monotype Corsiva', cursive, 'Brush Script MT', 'Lucida Handwriting';
+  font-size: 13px;
+  text-align: right;
+  line-height: 1.4;
+}
+
+.hv-info-box p {
+  margin: 3px 0;
+}
+
+/* ============= TÍTULOS DE SECCIONES ============= */
+.hv-section-title {
+  font-family: 'Century Schoolbook', 'Bookman Old Style', serif;
+  font-size: 11px;
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  margin: 18px 0 8px 50px;
+  color: #000;
+}
+
+/* ============= DATOS PERSONALES ============= */
+.hv-personal-data {
+  margin-left: 50px;
+  margin-bottom: 15px;
+}
+
+.hv-data-row {
+  display: flex;
+  margin: 4px 0;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.hv-label {
+  min-width: 200px;
+  font-weight: normal;
+  padding-right: 10px;
+}
+
+.hv-value {
+  font-weight: normal;
+}
+
+/* ============= EDUCACIÓN ============= */
+.hv-education-item {
+  margin-left: 50px;
+  margin-bottom: 12px;
+}
+
+.hv-edu-header {
+  display: flex;
+  gap: 10px;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+
+.hv-edu-type {
+  font-weight: normal;
+  min-width: 180px;
+}
+
+.hv-edu-institution {
+  font-weight: bold;
+}
+
+.hv-edu-details {
+  margin-left: 180px;
+}
+
+.hv-edu-degree {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  margin: 2px 0;
+}
+
+/* ============= EXPERIENCIA LABORAL ============= */
+.hv-experience-item {
+  margin-left: 50px;
+  margin-bottom: 12px;
+}
+
+.hv-exp-company {
+  font-weight: bold;
+}
+
+/* ============= REFERENCIAS ============= */
+.hv-reference-item {
+  margin-left: 50px;
+  margin-bottom: 12px;
+}
+
+.hv-ref-name {
+  font-weight: bold;
+}
+
+/* ============= FIRMA ============= */
+.hv-signature {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+}
+
+.hv-signature-line {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.hv-signature-name {
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.hv-signature-id {
+  font-size: 11px;
+}
+
+/* ============= DOCUMENTOS ANEXOS ============= */
+.hv-anexo-header {
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 8px 0;
+  border-bottom: 2px solid #333;
+}
+
+.hv-anexo-header h2 {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.hv-documents-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.hv-document-item {
+  width: 100%;
+}
+
+.doc-label {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.hv-document-container {
+  width: 100%;
+  height: 320px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hv-document-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.hv-document-placeholder {
+  text-align: center;
+  color: #999;
+}
+
+.hv-document-placeholder p {
+  margin: 5px 0;
+}
+
+.hv-document-placeholder .small {
+  font-size: 10px;
+}
+
+/* Documentos de página completa */
+.hv-document-full {
+  width: 100%;
+  height: 720px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hv-document-img-full {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.hv-document-placeholder-full {
+  text-align: center;
+  color: #999;
+}
+
+.hv-document-placeholder-full p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.hv-document-placeholder-full .small {
+  font-size: 12px;
+}
+
+/* ============= RESPONSIVE / PRINT ============= */
+@media print {
+  .hv-clasica-page {
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+  }
+}

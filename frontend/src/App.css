@@ -1,5 +1,8 @@
-/* App.css - Estilos para CV Builder */
+/* ============================================================
+   App.css - CV Builder - VERSIÓN DEPURADA
+   ============================================================ */
 
+/* ============= RESET ============= */
 * {
   margin: 0;
   padding: 0;
@@ -12,6 +15,7 @@ body {
   color: #333;
 }
 
+/* ============= LAYOUT PRINCIPAL ============= */
 .app-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -49,7 +53,7 @@ body {
   padding-bottom: 8px;
 }
 
-/* Inputs y Textareas */
+/* Inputs, Textareas y Selects */
 .editor-panel input,
 .editor-panel textarea,
 .editor-panel select {
@@ -76,8 +80,7 @@ body {
 }
 
 /* Cards para items */
-.item-card,
-.skill-card {
+.item-card {
   background: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 8px;
@@ -86,6 +89,30 @@ body {
   position: relative;
 }
 
+/* Skill card: extiende item-card con grid */
+.skill-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.skill-card input {
+  margin: 0;
+}
+
+.skill-card select {
+  margin: 0;
+  width: 150px;
+}
+
+/* Botón eliminar circular */
 .delete-btn {
   position: absolute;
   top: 10px;
@@ -114,23 +141,7 @@ body {
   gap: 10px;
 }
 
-.skill-card {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-  align-items: center;
-}
-
-.skill-card input {
-  margin: 0;
-}
-
-.skill-card select {
-  margin: 0;
-  width: 150px;
-}
-
-/* Botones */
+/* ============= BOTONES ============= */
 .add-btn {
   width: 100%;
   padding: 12px;
@@ -221,7 +232,6 @@ body {
 .cv-template {
   background: white;
   padding: 30px;
-  /* Tamaño hoja carta estándar: 8.5" x 11" = 612px x 792px a 72 DPI */
   width: 612px;
   min-height: 792px;
   margin: 0 auto;
@@ -317,7 +327,7 @@ body {
   font-size: 13px;
 }
 
-/* ============= PLANTILLA CLÁSICO (HOJA DE VIDA COLOMBIANA) ============= */
+/* ============= PLANTILLA CLÁSICO ============= */
 .cv-template.clasico {
   font-family: Arial, sans-serif;
   padding: 0;
@@ -328,543 +338,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-.hv-page {
-  background: white;
-  padding: 12px;
-  /* Tamaño hoja carta estándar: 8.5" x 11" = 612px x 792px a 72 DPI */
-  width: 612px;
-  min-height: 768px; /* 792px - 24px de padding */
-  max-height: 768px;
-  margin: 0 auto;
-  border: 2px solid #333;
-  page-break-after: always;
-  box-sizing: border-box;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Ajustar contenido para que no desborde */
-.hv-photo-section {
-  max-height: 200px;
-  margin-top: 8px;
-}
-
-.hv-photo-placeholder {
-  width: 110px;
-  height: 145px;
-}
-
-.hv-contact-box {
-  padding: 10px;
-  font-size: 10px;
-}
-
-.hv-contact-box p {
-  margin: 3px 0;
-}
-
-/* Reducir tamaños de tabla */
-.hv-table {
-  font-size: 9px;
-  margin-bottom: 10px;
-}
-
-.hv-table td {
-  padding: 4px 6px;
-}
-
-.hv-section-title {
-  padding: 6px 10px;
-  margin-bottom: 8px;
-  margin-top: 10px;
-}
-
-.hv-section-title h3 {
-  font-size: 11px;
-}
-
-.hv-header h1 {
-  font-size: 16px;
-  padding: 10px;
-}
-
-.hv-name-banner h2 {
-  font-size: 14px;
-  padding: 10px;
-}
-
-/* Para PDF: salto de página después de cada página */
-@media print {
-  .hv-page {
-    page-break-after: always;
-    page-break-inside: avoid;
-    margin: 0;
-    border: none;
-    max-height: none;
-    width: 612px;
-    min-height: 792px;
-  }
-}
-/* Página 1 - Portada */
-.hv-page-1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-}
-
-.hv-header {
-  background: #d3d3d3;
-  width: 100%;
-  padding: 15px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.hv-header h1 {
-  font-size: 24px;
-  font-style: italic;
-  color: #666;
-  margin: 0;
-}
-
-.hv-name-banner {
-  background: #808080;
-  width: 100%;
-  padding: 15px;
-  text-align: center;
-  margin-bottom: 40px;
-  border-top: 3px solid #333;
-  border-bottom: 3px solid #333;
-}
-
-.hv-name-banner h2 {
-  color: white;
-  font-size: 20px;
-  margin: 0;
-  font-style: italic;
-}
-
-.hv-photo-section {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 30px;
-  width: 100%;
-  max-width: 600px;
-}
-
-.hv-photo-placeholder {
-  width: 180px;
-  height: 240px;
-  border: 2px solid #333;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #f9f9f9;
-}
-
-.hv-photo-placeholder span {
-  font-size: 60px;
-  color: #ccc;
-}
-
-.hv-photo-placeholder p {
-  margin-top: 10px;
-  color: #999;
-  font-size: 12px;
-}
-
-.hv-contact-box {
-  border: 2px solid #333;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-}
-
-.hv-contact-box p {
-  margin: 0;
-  font-size: 14px;
-}
-
-/* Páginas 2 y 3 - Contenido */
-.hv-section-title {
-  background: #d3d3d3;
-  padding: 8px 12px; /* Reducido */
-  margin-bottom: 12px; /* Reducido */
-  margin-top: 15px; /* Reducido */
-}
-
-/* NUEVO DISEÑO PÁGINA 1 */
-.hv-page-1 {
-  position: relative;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url('/src/assets/HvPortal.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Overlay opcional para mejorar contraste si es necesario */
-.hv-page-1::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.85); /* Overlay blanco semi-transparente */
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hv-page-borders {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hv-border-left {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 80px;
-  background: linear-gradient(to right, #d3d3d3 0%, #d3d3d3 50%, transparent 50%);
-  background-size: 20px 100%;
-}
-
-.hv-border-right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 80px;
-  background: linear-gradient(to left, #d3d3d3 0%, #d3d3d3 50%, transparent 50%);
-  background-size: 20px 100%;
-}
-
-.hv-page-content {
-  width: 580px; /* Ajustado para 612px - bordes */
-  display: flex;
-  flex-direction: column;
-  padding: 30px 0;
-  position: relative;
-  z-index: 2; /* Por encima del overlay */
-}
-
-.hv-top-bar,
-.hv-bottom-bar {
-  height: 45px;
-  margin-bottom: 12px;
-}
-
-.hv-bottom-bar {
-  margin-top: auto;
-  margin-bottom: 0;
-}
-
-.hv-header-new {
-  background: #c0c0c0;
-  padding: 10px;
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.hv-header-new h1 {
-  font-size: 18px;
-  font-style: italic;
-  color: #fff;
-  margin: 0;
-  font-weight: normal;
-}
-
-.hv-name-banner-new {
-  padding: 12px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.hv-name-banner-new h2 {
-  color: white;
-  font-size: 16px;
-  margin: 0;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.hv-main-container {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  min-height: 250px;
-  margin-bottom: 6vh;
-}
-
-.hv-photo-container-new {
-  flex-shrink: 0;
-}
-
-.hv-photo-frame {
-  width: 140px;
-  height: 190px;
-  border: 3px solid #000;
-  background: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.hv-photo-frame::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90px;
-  height: 2px;
-  background: #000;
-}
-
-.hv-photo-img-new {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hv-photo-placeholder-new {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #999;
-}
-
-.hv-photo-placeholder-new span {
-  font-size: 40px;
-}
-
-.hv-photo-placeholder-new p {
-  margin-top: 8px;
-  font-size: 10px;
-}
-
-.hv-info-box-new {
-  flex: 1;
-  border: 2px solid #000;
-  padding: 15px;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  justify-content: center;
-}
-
-.hv-info-row {
-  display: flex;
-  gap: 8px;
-  font-size: 11px;
-}
-
-.hv-info-label {
-  font-weight: bold;
-  min-width: 70px;
-}
-
-.hv-info-value {
-  color: #333;
-}
-
-/* Páginas 2 y 3 - Contenido */
-.hv-section-title {
-  background: #d3d3d3;
-  padding: 10px 15px;
-  margin-bottom: 15px;
-  margin-top: 20px;
-}
-
-.hv-section-title:first-child {
-  margin-top: 0;
-}
-
-.hv-section-title h3 {
-  margin: 0;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.hv-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  font-size: 12px;
-}
-
-.hv-table.hv-small-margin {
-  margin-bottom: 15px;
-}
-
-.hv-table tr {
-  border-bottom: 1px solid #ddd;
-}
-
-.hv-table td {
-  padding: 8px 10px;
-  vertical-align: top;
-}
-
-.hv-table .hv-label {
-  font-weight: bold;
-  width: 200px;
-  color: #333;
-  font-size: 11px;
-}
-
-.hv-table td:last-child {
-  color: #555;
-}
-
-/* Responsive para Hoja de Vida */
-@media print {
-  .hv-page {
-    page-break-after: always;
-    border: none;
-    min-height: 100vh;
-  }
-  
-  .hoja-vida-colombiana {
-    gap: 0;
-  }
-}
-
-/* Página 4 - Footer con firma */
-.hv-footer {
-  margin-top: 60px;
-  text-align: center;
-  padding-top: 30px;
-  border-top: 2px solid #333;
-}
-
-.hv-footer p {
-  margin: 5px 0;
-  font-size: 13px;
-}
-
-.hv-footer p:first-child {
-  font-weight: bold;
-  font-size: 14px;
-}
-
-/* Página 5 - Cédula apilada y centrada */
-.hv-cedula-stacked {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  margin: 40px auto;
-  max-width: 600px;
-}
-
-.hv-cedula-card {
-  width: 100%;
-}
-
-.hv-cedula-card .hv-document-placeholder {
-  height: 300px;
-  width: 100%;
-}
-
-/* Páginas 5 y 6 - Documentos apilados verticalmente */
-.hv-documents-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin: 15px 0;
-}
-
-.hv-document-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.hv-document-placeholder {
-  width: 100%;
-  height: 320px; /* Reducido para que quepan 2 en una página de 768px */
-  border: 2px dashed #999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #fafafa;
-  border-radius: 8px;
-  transition: all 0.3s;
-}
-
-.hv-document-placeholder:hover {
-  background: #f0f0f0;
-  border-color: #666;
-}
-
-.hv-document-placeholder p {
-  margin: 5px 0;
-  font-weight: bold;
-  color: #666;
-  font-size: 14px;
-}
-
-.hv-document-placeholder p.small {
-  font-size: 11px;
-  font-weight: normal;
-  color: #999;
-}
-
-.hv-document-placeholder.cedula-frente,
-.hv-document-placeholder.cedula-reverso {
-  background: linear-gradient(135deg, #fff9e6 0%, #fff 100%);
-}
-
-.hv-document-placeholder.carnet-vacunas {
-  background: linear-gradient(135deg, #e6f7ff 0%, #fff 100%);
-}
-
-.hv-document-placeholder.certificado {
-  background: linear-gradient(135deg, #f0ffe6 0%, #fff 100%);
-}
-
-.hv-note {
-  margin-top: 30px;
-  padding: 15px;
-  background: #fff3cd;
-  border-left: 4px solid #ffc107;
-  border-radius: 4px;
-}
-
-.hv-note p {
-  margin: 0;
-  font-size: 12px;
-  color: #856404;
-}
-
-.hv-note strong {
-  color: #664d03;
 }
 
 /* ============= PLANTILLA MODERNO ============= */
@@ -890,34 +363,18 @@ body {
   font-weight: 700;
 }
 
-.cv-template.moderno .cv-item h3 {
-  color: white;
-}
-
-.cv-template.moderno .cv-item h4 {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.cv-template.moderno .cv-item p {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.cv-template.moderno .cv-date {
-  color: rgba(255, 255, 255, 0.7);
-}
+.cv-template.moderno .cv-item h3 { color: white; }
+.cv-template.moderno .cv-item h4 { color: rgba(255, 255, 255, 0.8); }
+.cv-template.moderno .cv-item p  { color: rgba(255, 255, 255, 0.9); }
+.cv-template.moderno .cv-date   { color: rgba(255, 255, 255, 0.7); }
 
 .cv-template.moderno .cv-skill {
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.cv-template.moderno .skill-name {
-  color: white;
-}
-
-.cv-template.moderno .skill-level {
-  color: rgba(255, 255, 255, 0.8);
-}
+.cv-template.moderno .skill-name  { color: white; }
+.cv-template.moderno .skill-level { color: rgba(255, 255, 255, 0.8); }
 
 /* ============= PLANTILLA MINIMALISTA ============= */
 .cv-template.minimalista {
@@ -929,7 +386,6 @@ body {
   font-size: 38px;
   font-weight: 300;
   color: #000;
-  border: none;
 }
 
 .cv-template.minimalista .cv-contact {
@@ -948,9 +404,7 @@ body {
   font-weight: 700;
 }
 
-.cv-template.minimalista .cv-item h3 {
-  font-weight: 600;
-}
+.cv-template.minimalista .cv-item h3 { font-weight: 600; }
 
 .cv-template.minimalista .cv-skill {
   background: transparent;
@@ -974,12 +428,9 @@ body {
 .cv-template.creativo .cv-header h1 {
   color: #ecf0f1;
   font-size: 34px;
-  border: none;
 }
 
-.cv-template.creativo .cv-contact {
-  color: #bdc3c7;
-}
+.cv-template.creativo .cv-contact { color: #bdc3c7; }
 
 .cv-template.creativo .cv-section h2 {
   color: #e74c3c;
@@ -989,9 +440,7 @@ body {
   border-left: 5px solid #e74c3c;
 }
 
-.cv-template.creativo .cv-item h3 {
-  color: #e74c3c;
-}
+.cv-template.creativo .cv-item h3 { color: #e74c3c; }
 
 .cv-template.creativo .cv-skill {
   background: #ecf0f1;
@@ -999,33 +448,67 @@ body {
 }
 
 /* ============= PLANTILLA PROFESIONAL (SIDEBAR) ============= */
+/* El template profesional ahora es un contenedor flex en columna.
+   El grid sidebar+contenido va dentro de .pro-cv-page */
 .cv-template.profesional {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  padding: 0;
-  background: #f5f5f5;
-}
-
-/* Sidebar izquierdo oscuro - NUEVO DISEÑO */
-.cv-template.profesional .cv-sidebar {
-  background: #1a1a1a;
-  color: white;
-  padding: 40px 30px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  padding: 0;
+  background: #f5f5f5;
+  width: 612px;
+  min-height: 792px;
 }
 
-/* Foto de perfil circular grande */
-.cv-profile-photo-pro {
+/* Página principal: sidebar + contenido en grid */
+.pro-cv-page {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  width: 612px;
+  min-height: 792px;
+  max-width: 612px;
+  background: white;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.cv-template.profesional .cv-sidebar,
+.pro-cv-page .cv-sidebar {
+  background: var(--color-primary, #2c3e50);
+  color: white;
+  padding: 25px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-height: 792px;
+  overflow: hidden;
   width: 200px;
-  height: 200px;
+  box-sizing: border-box;
+}
+
+/* Colores dinámicos sidebar */
+.cv-template.profesional .cv-sidebar-section h2 {
+  border-bottom: 2px solid var(--color-secondary, #3498db);
+}
+
+.cv-template.profesional .cv-main-content .cv-section h2 {
+  border-bottom: 3px solid var(--color-secondary, #3498db);
+}
+
+.cv-template.profesional .job-title,
+.cv-template.profesional .cv-date {
+  color: var(--color-secondary, #3498db);
+}
+
+/* Foto circular */
+.cv-profile-photo-pro {
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   background: #34495e;
-  margin: 0 auto 20px;
+  margin: 0 auto 15px;
   overflow: hidden;
-  border: 8px solid #2c2c2c;
+  border: 5px solid #2c2c2c;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -1035,8 +518,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 80px;
+  font-size: 50px;
   color: #666;
+}
+
+.cv-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 /* Secciones del sidebar */
@@ -1108,7 +598,6 @@ body {
   margin: 2px 0;
 }
 
-/* Sitio web */
 .website-pro {
   color: #e0e0e0;
   font-size: 12px;
@@ -1116,24 +605,26 @@ body {
   word-break: break-word;
 }
 
-/* Contenido principal derecho - NUEVO DISEÑO */
+/* Contenido principal */
 .cv-template.profesional .cv-main-content-pro {
   background: white;
-  padding: 50px;
+  padding: 30px 25px;
+  overflow: hidden;
+  min-width: 0; /* evita que el grid desborde */
 }
 
-/* Header con nombre grande */
 .cv-header-pro {
   margin-bottom: 40px;
 }
 
 .cv-name-pro {
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 700;
   color: #1a1a1a;
   line-height: 1.1;
-  margin: 0 0 10px 0;
-  letter-spacing: -1px;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+  word-break: break-word;
 }
 
 .cv-title-pro {
@@ -1151,7 +642,6 @@ body {
   margin-top: 15px;
 }
 
-/* Secciones del contenido */
 .cv-section-pro {
   margin-bottom: 35px;
 }
@@ -1171,10 +661,8 @@ body {
   text-align: justify;
 }
 
-/* Items de experiencia */
-.exp-item-pro {
-  margin-bottom: 25px;
-}
+/* Experiencia */
+.exp-item-pro { margin-bottom: 25px; }
 
 .exp-year-pro {
   font-size: 16px;
@@ -1190,10 +678,8 @@ body {
   margin: 5px 0 10px 0;
 }
 
-/* Items de educación */
-.edu-item-pro {
-  margin-bottom: 20px;
-}
+/* Educación */
+.edu-item-pro { margin-bottom: 20px; }
 
 .edu-year-pro {
   font-size: 16px;
@@ -1242,28 +728,6 @@ body {
   color: #555;
 }
 
-/* ============= RESPONSIVE ============= */
-@media (max-width: 1200px) {
-  .app-container {
-    grid-template-columns: 1fr;
-  }
-
-  .preview-panel {
-    max-height: none;
-  }
-}
-
-@media print {
-  .cv-preview-container {
-    background: transparent;
-    padding: 0;
-  }
-
-  .cv-template {
-    box-shadow: none;
-  }
-}
-
 /* ============= UPLOAD DE ARCHIVOS ============= */
 .upload-group {
   margin-bottom: 20px;
@@ -1303,26 +767,6 @@ body {
   border: 2px solid #ddd;
 }
 
-.file-uploaded {
-  margin-top: 8px;
-  padding: 8px 12px;
-  background: #d4edda;
-  border: 1px solid #c3e6cb;
-  border-radius: 4px;
-  color: #155724;
-  font-size: 13px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.files-list {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .remove-file {
   background: #e74c3c;
   color: white;
@@ -1353,270 +797,13 @@ body {
   border-radius: 6px;
 }
 
-.doc-label {
-  font-size: 10px;
-  font-weight: bold;
-  color: #2c3e50;
-  margin-bottom: 6px;
-  text-align: center;
-  background: #e8f4f8;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
-.cv-photo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.hv-additional-certificates {
-  margin-top: 30px;
-}
-
-.hv-additional-certificates h4 {
-  font-size: 14px;
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-.hv-certificates-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-}
-
-.hv-certificates-grid .hv-document-placeholder {
-  height: 200px;
-}
-
-/* ============= SELECTOR DE COLORES ============= */
-.color-category {
-  margin-bottom: 25px;
-}
-
-.color-category h3 {
-  font-size: 15px;
-  margin-bottom: 12px;
-  color: #2c3e50;
-  font-weight: 600;
-}
-
-.color-schemes-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.color-scheme-card {
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 12px;
-  cursor: pointer;
-  transition: all 0.3s;
-  background: white;
-}
-
-.color-scheme-card:hover {
-  border-color: #3498db;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.color-scheme-card.selected {
-  border-color: #3498db;
-  background: #ebf5fb;
-  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
-}
-
-.color-preview {
-  display: flex;
-  gap: 5px;
-  margin-bottom: 8px;
-}
-
-.color-box {
-  flex: 1;
-  height: 30px;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.color-box.clickable {
-  cursor: pointer;
-  position: relative;
-  transition: all 0.2s;
-}
-
-.color-box.clickable:hover {
-  transform: scale(1.1);
-  border: 2px solid #3498db;
-  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-}
-
-.color-box.clickable:hover::after {
-  content: "✎";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 16px;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-}
-
-.color-hint {
-  font-size: 11px;
-  color: #7f8c8d;
-  margin-top: -5px;
-  margin-bottom: 10px;
-  font-style: italic;
-}
-
-.color-name {
-  font-size: 12px;
-  font-weight: 600;
-  color: #555;
-  text-align: center;
-  margin: 0;
-}
-
-.selected-colors-info {
-  margin-top: 15px;
-  padding: 12px;
-  background: #e8f8f5;
-  border-left: 4px solid #1abc9c;
-  border-radius: 4px;
-}
-
-.selected-colors-info p {
-  margin: 0;
-  font-size: 13px;
-  color: #16a085;
-}
-
-.color-preview-inline {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.color-dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Color Pickers */
-.color-pickers {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.color-picker-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.color-picker-item label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #34495e;
-}
-
-.color-input-group {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.color-input-group input[type="color"] {
-  width: 60px;
-  height: 40px;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  cursor: pointer;
-  padding: 2px;
-}
-
-.color-input-group input[type="color"]:hover {
-  border-color: #3498db;
-}
-
-.hex-input {
-  flex: 1;
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  font-family: monospace;
-  font-size: 14px;
-  text-transform: uppercase;
-}
-
-.hex-input:focus {
-  border-color: #3498db;
-  outline: none;
-}
-
-/* Aplicar colores dinámicos solo a Template Profesional */
-.cv-template.profesional .cv-sidebar {
-  background: var(--color-primary, #2c3e50);
-}
-
-.cv-template.profesional .cv-sidebar-section h2 {
-  border-bottom: 2px solid var(--color-secondary, #3498db);
-}
-
-.cv-template.profesional .cv-main-content .cv-section h2 {
-  border-bottom: 3px solid var(--color-secondary, #3498db);
-}
-
-.cv-template.profesional .job-title,
-.cv-template.profesional .cv-date {
-  color: var(--color-secondary, #3498db);
-}
-
-/* Documentos en templates modernos */
-.cv-documents-grid-modern,
-.cv-documents-grid-pro {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin-top: 15px;
-}
-
-.cv-document-item,
-.cv-document-item-pro {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  background: #f9f9f9;
-}
-
-.cv-document-item h4,
-.cv-document-item-pro h4 {
-  font-size: 12px;
-  margin-bottom: 8px;
-  color: #2c3e50;
-  font-weight: 600;
-}
-
-.cv-document-img-modern,
-.cv-document-img-pro {
-  width: 100%;
-  height: 200px;
+.hv-document-img-full {
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  border-radius: 4px;
-  background: white;
-  border: 1px solid #e0e0e0;
 }
 
-/* Nuevo sistema de documentos anexos */
+/* ============= DOCUMENTOS ANEXOS (EDITOR) ============= */
 .documentos-anexos-section {
   margin-top: 20px;
   padding-top: 20px;
@@ -1702,31 +889,11 @@ body {
   gap: 5px;
 }
 
-.btn-move {
-  width: 30px;
-  height: 30px;
-  background: #95a5a6;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s;
-}
-
-.btn-move:hover:not(:disabled) {
-  background: #7f8c8d;
-}
-
-.btn-move:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
+/* Botones mover / eliminar pequeños — comparten base */
+.btn-move,
 .delete-btn-small {
   width: 30px;
   height: 30px;
-  background: #e74c3c;
   color: white;
   border: none;
   border-radius: 4px;
@@ -1735,9 +902,12 @@ body {
   transition: background 0.3s;
 }
 
-.delete-btn-small:hover {
-  background: #c0392b;
-}
+.btn-move { background: #95a5a6; }
+.btn-move:hover:not(:disabled) { background: #7f8c8d; }
+.btn-move:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.delete-btn-small { background: #e74c3c; }
+.delete-btn-small:hover { background: #c0392b; }
 
 .documento-doble-upload {
   display: grid;
@@ -1805,90 +975,297 @@ body {
   object-fit: contain;
 }
 
-/* Estilos para documentos en CV Clásico */
-.hv-page-anexo-full {
-  padding: 10px;
+/* ============= SELECTOR DE COLORES ============= */
+.color-category {
+  margin-bottom: 25px;
 }
 
-.hv-section-title-simple {
-  background: #d3d3d3;
-  padding: 8px 12px;
+.color-category h3 {
+  font-size: 15px;
+  margin-bottom: 12px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.color-hint {
+  font-size: 11px;
+  color: #7f8c8d;
+  margin-top: -5px;
   margin-bottom: 10px;
-  text-align: center;
+  font-style: italic;
 }
 
-.hv-section-title-simple h3 {
-  font-size: 13px;
+.color-schemes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.color-scheme-card {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: white;
+}
+
+.color-scheme-card:hover {
+  border-color: #3498db;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.color-scheme-card.selected {
+  border-color: #3498db;
+  background: #ebf5fb;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.color-preview {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.color-box {
+  flex: 1;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.color-box.clickable {
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.color-box.clickable:hover {
+  transform: scale(1.1);
+  border: 2px solid #3498db;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+}
+
+.color-box.clickable:hover::after {
+  content: "✎";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.color-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  text-align: center;
   margin: 0;
 }
 
-.hv-document-full-container {
+.selected-colors-info {
+  margin-top: 15px;
+  padding: 12px;
+  background: #e8f8f5;
+  border-left: 4px solid #1abc9c;
+  border-radius: 4px;
+}
+
+.selected-colors-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #16a085;
+}
+
+.color-preview-inline {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.color-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.color-pickers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.color-picker-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.color-picker-item label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.color-input-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.color-input-group input[type="color"] {
+  width: 60px;
+  height: 40px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.color-input-group input[type="color"]:hover {
+  border-color: #3498db;
+}
+
+.hex-input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.hex-input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* ============================================================
+   DOCUMENTOS ANEXOS EN PLANTILLAS — BASE COMPARTIDA
+   Las clases modern-* y profesional-* extienden esta lógica
+   ============================================================ */
+
+/* Página de anexo (doble o simple) — compartida por modern y profesional */
+.modern-anexo-page,
+.modern-anexo-page-full,
+.profesional-anexo-page,
+.profesional-anexo-page-full {
+  background: white;
+  padding: 20px;
+  width: 612px;
+  height: 792px;        /* altura fija = 1 página exacta */
+  max-height: 792px;    /* nunca más de una página */
+  margin: 20px auto 0 auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  page-break-before: always;
+  break-before: page;
+  page-break-after: always;
+  break-after: page;
+  overflow: hidden;     /* cortar lo que desborde */
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / -1;
+}
+
+/* Pila vertical de documentos — compartida */
+.modern-documents-stack,
+.profesional-documents-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Item individual de documento — compartida */
+.modern-document-item,
+.profesional-document-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Contenedor de imagen (doble cara) — compartida en tamaño */
+.modern-document-container,
+.profesional-document-container {
   width: 100%;
-  height: 720px; /* Ajustado para 612x792 menos padding y título */
+  height: 320px;
+  border-radius: 6px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  border: 2px solid #999;
+  background: #fafafa;
 }
 
-.hv-document-img-full {
+/* Modern: borde gris */
+.modern-document-container  { border: 2px solid #ddd; }
+/* Profesional: borde con color dinámico */
+.profesional-document-container { border: 2px solid var(--color-secondary, #3498db); }
+
+/* Imagen dentro del contenedor — compartida */
+.modern-document-img,
+.profesional-document-img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
 
-.hv-document-placeholder-full {
+/* Contenedor documento completo (una cara) — altura calculada para no desbordar */
+.modern-document-full,
+.profesional-document-full {
+  width: 100%;
+  /* 792px total - 40px padding página - 55px header - 10px margen = 687px */
+  height: 687px;
+  max-height: 687px;
+  border-radius: 6px;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: #fafafa;
+  flex-shrink: 0;
+}
+
+.modern-document-full      { border: 2px solid #ddd; }
+.profesional-document-full { border: 2px solid var(--color-secondary, #3498db); }
+
+/* Imagen documento completo — escala para caber siempre */
+.modern-document-img-full,
+.profesional-document-img-full {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Placeholder — compartido */
+.modern-placeholder,
+.profesional-placeholder,
+.modern-placeholder-full,
+.profesional-placeholder-full {
+  text-align: center;
   color: #999;
 }
 
-.hv-document-placeholder-full p {
-  font-size: 14px;
+.modern-placeholder p,
+.profesional-placeholder p,
+.modern-placeholder-full p,
+.profesional-placeholder-full p {
   margin: 5px 0;
 }
 
-/* Documentos página completa en templates modernos */
-.cv-document-item-full,
-.cv-document-item-pro-full {
-  grid-column: 1 / -1;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  background: #f9f9f9;
-}
+.modern-placeholder .small,
+.profesional-placeholder .small { font-size: 10px; }
 
-.cv-document-img-modern-full,
-.cv-document-img-pro-full {
-  width: 100%;
-  height: 400px;
-  object-fit: contain;
-  border-radius: 4px;
-  background: white;
-  border: 1px solid #e0e0e0;
-}
-
-
-/* ============= DOCUMENTOS ANEXOS EN PÁGINAS SEPARADAS ============= */
-
-/* Modern Template Anexos */
-.modern-anexo-page,
-.modern-anexo-page-full {
-  background: white;
-  padding: 12px;
-  width: 612px;
-  min-height: 768px;
-  max-height: 768px;
-  margin: 0 auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  page-break-after: always;
-  overflow: hidden;
-}
-
+/* Encabezado de anexo */
 .modern-anexo-header {
   background: #3498db;
   color: white;
@@ -1896,104 +1273,6 @@ body {
   text-align: center;
   margin-bottom: 15px;
   border-radius: 6px;
-}
-
-.modern-anexo-header h2 {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.modern-documents-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.modern-document-item {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.modern-doc-label {
-  font-size: 10px;
-  font-weight: bold;
-  color: #2c3e50;
-  text-align: center;
-  background: #e8f4f8;
-  padding: 5px;
-  border-radius: 4px;
-}
-
-.modern-document-container {
-  width: 100%;
-  height: 320px;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fafafa;
-}
-
-.modern-document-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.modern-placeholder {
-  text-align: center;
-  color: #999;
-}
-
-.modern-placeholder p {
-  margin: 5px 0;
-}
-
-.modern-placeholder .small {
-  font-size: 10px;
-}
-
-.modern-document-full {
-  width: 100%;
-  height: 720px;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fafafa;
-}
-
-.modern-document-img-full {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.modern-placeholder-full {
-  text-align: center;
-  color: #999;
-}
-
-/* Professional Template Anexos */
-.profesional-anexo-page,
-.profesional-anexo-page-full {
-  background: white;
-  padding: 12px;
-  width: 612px;
-  min-height: 768px;
-  max-height: 768px;
-  margin: 0 auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  page-break-after: always;
-  overflow: hidden;
 }
 
 .profesional-anexo-header {
@@ -2004,6 +1283,7 @@ body {
   margin-bottom: 15px;
 }
 
+.modern-anexo-header h2,
 .profesional-anexo-header h2 {
   margin: 0;
   font-size: 14px;
@@ -2011,16 +1291,15 @@ body {
   letter-spacing: 1px;
 }
 
-.profesional-documents-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.profesional-document-item {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+/* Etiqueta FRENTE / REVERSO */
+.modern-doc-label {
+  font-size: 10px;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center;
+  background: #e8f4f8;
+  padding: 5px;
+  border-radius: 4px;
 }
 
 .profesional-doc-label {
@@ -2033,56 +1312,564 @@ body {
   border-radius: 4px;
 }
 
-.profesional-document-container {
+/* Contenedores de template */
+.modern-template-container,
+.profesional-template-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.modern-cv-main,
+.profesional-cv-main {
+  display: block;
+}
+
+.modern-anexos-container,
+.profesional-anexos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ============================================================
+   HOJA DE VIDA CLÁSICA COLOMBIANA
+   ============================================================ */
+
+.hv-clasica-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 320px;
-  border: 2px solid var(--color-secondary, #3498db);
-  border-radius: 6px;
+  background: #f5f5f5;
+}
+
+.hv-clasica-page {
+  background: white;
+  width: 612px;
+  height: 792px;
+  margin: 20px auto;
+  position: relative;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  page-break-after: always;
   overflow: hidden;
+}
+
+/* Barras grises */
+.hv-top-bar {
+  position: absolute;
+  top: 70px;
+  left: 66px;
+  width: 80%;
+  height: 15px;
+  background: #CCCCCC;
+  z-index: 1;
+}
+
+.hv-bottom-bar {
+  position: absolute;
+  bottom: 50px;
+  left: 66px;
+  width: 70%;
+  height: 12px;
+  background: #CCCCCC;
+  z-index: 1;
+}
+
+/* Línea vertical izquierda */
+.hv-line-vertical {
+  position: absolute;
+  left: 62px;
+  top: 195px;
+  height: 44vh;
+  width: 2px;
+  background: #000000;
+  z-index: 2;
+}
+
+/* Encabezado "Hoja de Vida" */
+.hv-header-box {
+  position: absolute;
+  top: 115px;
+  left: 124px;
+  width: 360px;
+  height: 42px;
+  background: #CCCCCC;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fafafa;
+  border: 1px solid #999;
+  z-index: 3;
 }
 
-.profesional-document-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+.hv-header-title {
+  margin: 0;
+  font-family: 'Monotype Corsiva', 'Brush Script MT', cursive;
+  font-size: 35px;
+  font-weight: bold;
+  font-style: italic;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.profesional-placeholder {
+/* Círculo decorativo */
+.hv-circle-left {
+  position: absolute;
+  top: 140px;
+  left: 40px;
+  width: 70px;
+  height: 70px;
+  background: #969696;
+  border-radius: 50%;
+  opacity: 0.7;
+  z-index: 2;
+}
+
+/* Línea horizontal negra */
+.hv-line-horizontal {
+  position: absolute;
+  top: 180px;
+  left: 92px;
+  width: 450px;
+  height: 3px;
+  background: #000000;
+  z-index: 2;
+}
+
+/* Nombre principal */
+.hv-name-section {
+  position: absolute;
+  top: 190px;
+  right: 60px;
+  left: 100px;
+  z-index: 3;
+}
+
+.hv-name-text {
+  margin: 0;
+  font-family: 'Monotype Corsiva', 'Brush Script MT', cursive;
+  font-size: 28px;
+  font-weight: bold;
+  color: #000000;
+  text-align: right;
+  text-transform: capitalize;
+}
+
+/* Wrapper foto e información */
+/* Wrapper: referencia para foto e info */
+.hv-photo-info-wrapper {
+  position: absolute;
+  top: 200px;
+  right: 0;
+  left: 0;
+  height: 330px;
+  z-index: 4;
+}
+
+/* Marco con sombra: posicionado desde el borde derecho de la página */
+.hv-shadow-frame {
+  position: absolute;
+  top: -15px;
+  right: 55px;
+  width: 265px;
+  height: 280px;
+  background: #f5f5f5;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Foto: dentro del marco */
+.hv-photo-box {
+  position: absolute;
+  top: -10px;
+  right: 115px;
+  width: 110px;
+  height: 140px;
+  background: #F5F5F5;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.hv-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hv-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E0E0E0;
+  color: #888;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Recuadro de información personal: debajo de la foto */
+.hv-info-block {
+  position: absolute;
+  top: 145px;
+  right: 58px;
+  width: 255px;
+  padding: 8px 12px;
+  border: 1px solid #000;
+  z-index: 5;
+}
+
+.hv-info-line {
+  margin: 3px 0;
+  font-family: 'Monotype Corsiva', 'Brush Script MT', cursive;
+  font-size: 13px;
+  color: #000;
+  text-align: right;
+  line-height: 1.3;
+}
+
+/* Contenido páginas 2, 3, 4 */
+.hv-content-wrapper {
+  position: absolute;
+  top: 100px;
+  left: 70px;
+  right: 50px;
+  bottom: 35px;
+  overflow: hidden;
+}
+
+/* Títulos de secciones */
+.hv-section-title {
+  margin: 20px 0 10px 0;
+  font-family: 'Century Schoolbook', 'Bookman Old Style', serif;
+  font-size: 11px;
+  font-style: italic;
+  font-weight: normal;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  color: #000;
+}
+
+.hv-section-content {
+  margin-bottom: 15px;
+}
+
+/* Filas de datos */
+.hv-data-row {
+  display: flex;
+  margin: 3px 0;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.hv-data-label {
+  flex-shrink: 0;
+  min-width: 180px;
+  font-weight: normal;
+  color: #000;
+}
+
+.hv-data-value {
+  flex: 1;
+  font-weight: normal;
+  color: #000;
+}
+.hv-data-value--name {
+  flex: 1;
+  font-weight: normal;
+  color: #000;
+  text-transform: uppercase;
+}
+.hv-bold { font-weight: bold; }
+
+/* Educación */
+.hv-edu-block { margin-bottom: 12px; }
+
+.hv-edu-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 3px;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+}
+
+.hv-edu-type {
+  flex-shrink: 0;
+  min-width: 180px;
+  font-weight: normal;
+}
+
+.hv-edu-institution {
+  flex: 1;
+  font-weight: bold;
+}
+
+.hv-edu-details { margin-left: 180px; }
+
+.hv-edu-text {
+  margin: 2px 0;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+}
+
+/* Experiencia */
+.hv-exp-block { margin-bottom: 15px; }
+
+/* Referencias */
+.hv-ref-block { margin-bottom: 15px; }
+
+/* Firma (Página 4) */
+.hv-signature-block {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
   text-align: center;
-  color: #999;
 }
 
-.profesional-placeholder p {
-  margin: 5px 0;
+.hv-signature-line {
+  margin-bottom: 8px;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 12px;
+  color: #000;
 }
 
-.profesional-placeholder .small {
+.hv-signature-name {
+  margin-bottom: 4px;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: #000;
+}
+
+.hv-signature-id {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  color: #000;
+}
+
+/* Documentos anexos clásico */
+.hv-anexo-title {
+  margin: 15px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #333;
+  text-align: center;
+}
+
+.hv-anexo-title h2 {
+  margin: 0;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.hv-documents-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.hv-doc-item { width: 100%; }
+
+.hv-doc-label {
+  margin-bottom: 5px;
+  font-family: 'Arial Narrow', Arial, sans-serif;
   font-size: 10px;
+  font-weight: bold;
+  color: #666;
 }
 
-.profesional-document-full {
+.hv-doc-container {
   width: 100%;
-  height: 720px;
-  border: 2px solid var(--color-secondary, #3498db);
-  border-radius: 6px;
-  overflow: hidden;
+  height: 300px;
+  border: 1px solid #DDD;
+  background: #F9F9F9;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fafafa;
+  overflow: hidden;
 }
 
-.profesional-document-img-full {
+.hv-doc-image {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
 
-.profesional-placeholder-full {
+.hv-doc-placeholder {
   text-align: center;
   color: #999;
+}
+
+.hv-doc-placeholder p { margin: 5px 0; }
+.hv-doc-placeholder .small { font-size: 9px; }
+
+/* Documento completo (una cara) */
+.hv-doc-full {
+  width: 100%;
+  height: 650px;
+  border: 1px solid #DDD;
+  background: #F9F9F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hv-doc-image-full {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.hv-doc-placeholder-full {
+  text-align: center;
+  color: #999;
+}
+
+.hv-doc-placeholder-full p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.hv-doc-placeholder-full .small { font-size: 11px; }
+
+/* ============= RESPONSIVE ============= */
+@media (max-width: 1200px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+  .preview-panel {
+    max-height: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .hv-clasica-page {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+  }
+}
+
+
+/* @page fuera del @media — tamaño carta exacto en mm */
+@page {
+  margin: 0;
+  size: 216mm 279mm portrait;
+}
+
+/* ============= PRINT ============= */
+@media print {
+
+  /* Forzar colores de fondo primero */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Ocultar toda la UI */
+  body > *                         { visibility: hidden; }
+  .app-container                   { display: block !important; padding: 0; margin: 0; }
+  .editor-panel                    { display: none !important; }
+
+  .preview-panel > h2,
+  .preview-panel > *:not(.cv-preview-container) {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Mostrar solo el CV */
+  .preview-panel,
+  .cv-preview-container,
+  .cv-preview-container *          { visibility: visible; }
+
+  .preview-panel {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .cv-preview-container {
+    background: transparent !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
+
+  .cv-template {
+    box-shadow: none !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  /* Eliminar márgenes entre páginas del profesional y moderno */
+  .pro-cv-page {
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .modern-anexo-page,
+  .modern-anexo-page-full,
+  .profesional-anexo-page,
+  .profesional-anexo-page-full {
+    margin: 0 !important;
+    box-shadow: none !important;
+    background: white !important;
+  }
+
+  /* Eliminar fondo gris del contenedor clasico entre páginas */
+  .hv-clasica-container {
+    gap: 0 !important;
+  }
+
+  .hv-clasica-page {
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Quitar cualquier fondo gris visible entre páginas */
+  .cv-template.profesional,
+  .cv-template.moderno,
+  .modern-template-container,
+  .profesional-template-container {
+    background: transparent !important;
+    gap: 0 !important;
+  }
+
+  /* Páginas clásico: carta exacta en mm, sin gaps entre páginas */
+  .hv-clasica-page {
+    width: 216mm !important;
+    height: 279mm !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    overflow: hidden !important;
+    /* Escalar el contenido de 612px a 216mm para que todo encaje */
+    transform: scale(0.7937) !important;
+    transform-origin: top left !important;
+  }
+
+  .hv-clasica-container {
+    background: white !important;
+    gap: 0 !important;
+  }
+
+  /* Elementos decorativos: forzar colores */
+  .hv-top-bar,
+  .hv-bottom-bar      { background: #CCCCCC !important; }
+  .hv-line-vertical,
+  .hv-line-horizontal { background: #000000 !important; }
+  .hv-circle-left     { background: #969696 !important; opacity: 0.7 !important; }
+  .hv-header-box      { background: #CCCCCC !important; }
+  .hv-shadow-frame    { box-shadow: 5px 5px 10px rgba(0,0,0,0.25) !important; }
 }

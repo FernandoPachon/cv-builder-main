@@ -2,7 +2,9 @@ import React from "react";
 
 function CVTemplateModern({ data }) {
   return (
-    <>
+    <div className="modern-template-container">
+      {/* Contenido principal del CV */}
+      <div className="modern-cv-main">
       {/* Header */}
       <div className="cv-header">
         <h1>{data.nombre && data.apellidos ? `${data.nombre} ${data.apellidos}` : data.nombre || "Tu Nombre"}</h1>
@@ -74,9 +76,11 @@ function CVTemplateModern({ data }) {
         </div>
       )}
 
+      </div> {/* Cierre de modern-cv-main */}
+
       {/* PÁGINAS DE DOCUMENTOS ANEXOS - Igual que en clásico */}
       {data.documentosAnexos && data.documentosAnexos.length > 0 && (
-        <>
+        <div className="modern-anexos-container">
           {data.documentosAnexos.map((doc) => {
             if (doc.tipo === "doble") {
               // Documento de 2 caras - página separada
@@ -153,9 +157,9 @@ function CVTemplateModern({ data }) {
               );
             }
           })}
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 
