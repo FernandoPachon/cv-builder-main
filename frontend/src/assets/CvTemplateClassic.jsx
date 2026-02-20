@@ -81,47 +81,52 @@ function CVTemplateClassic({ data, backgroundImage }) {
           <div className="hv-section-content">
             <div className="hv-data-row">
               <span className="hv-data-label">NOMBRES:</span>
-              <span className="hv-data-value--name">{data.nombre || "YERLI DISENEY"}</span>
+              <span className="hv-data-value--name">{data.nombre || "Nombres"}</span>
             </div>
 
             <div className="hv-data-row">
               <span className="hv-data-label">APELLIDOS:</span>
-              <span className="hv-data-value--name">{data.apellidos || "BONILLA VEGA"}</span>
+              <span className="hv-data-value--name">{data.apellidos || "Apellidos"}</span>
             </div>
 
             <div className="hv-data-row">
               <span className="hv-data-label">FECHA DE NACIMIENTO:</span>
-              <span className="hv-data-value">{data.fechaNacimiento || "5 de noviembre de 1996"}</span>
+              <span className="hv-data-value">{data.fechaNacimiento || "Fecha de nacimiento"}</span>
             </div>
 
             <div className="hv-data-row">
               <span className="hv-data-label">LUGAR DE NACIMIENTO:</span>
-              <span className="hv-data-value">{data.lugarNacimiento || "Aguazul - Casanare"}</span>
+              <span className="hv-data-value">{data.lugarNacimiento || "Cuidad - Departamento"}</span>
             </div>
 
             <div className="hv-data-row">
               <span className="hv-data-label">IDENTIFICACIÓN:</span>
-              <span className="hv-data-value">C.C. Nº {data.identificacion || "1.121.939448"}</span>
+              <span className="hv-data-value">C.C. Nº {data.identificacion || "1.234.567.890"}</span>
             </div>
 
             <div className="hv-data-row">
               <span className="hv-data-label">ESTADO CIVIL:</span>
-              <span className="hv-data-value">{data.estadoCivil || "Casada"}</span>
+              <span className="hv-data-value">{data.estadoCivil || "Estado civil"}</span>
             </div>
 
             <div className="hv-data-row">
               <span className="hv-data-label">RESIDENCIA:</span>
-              <span className="hv-data-value">{data.direccion || "Calle 22 # 23 - 22"}</span>
+              <span className="hv-data-value">{data.direccion || "Direccion"}</span>
             </div>
 
             <div className="hv-data-row">
               <span className="hv-data-label">CELULAR:</span>
-              <span className="hv-data-value">{data.telefono || "322 731 0717"}</span>
+              <span className="hv-data-value">{data.telefono || "312 345 6789"}</span>
             </div>
 
             <div className="hv-data-row">
               <span className="hv-data-label">CIUDAD:</span>
-              <span className="hv-data-value">{data.ubicacion || "Aguazul - Casanare"}</span>
+              <span className="hv-data-value">{data.ubicacion || "Ciudad - Departamento"}</span>
+            </div>
+
+                <div className="hv-data-row">
+              <span className="hv-data-label">CORREO:</span>
+              <span className="hv-data-value">{data.email|| "correo@correo.com"}</span>
             </div>
           </div>
 

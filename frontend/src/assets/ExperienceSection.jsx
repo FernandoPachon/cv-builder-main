@@ -1,31 +1,25 @@
 import React from "react";
+import DatePickerCO from "./Datepickerco";
 
 function ExperienceSection({ data, setData }) {
-  const agregarExperiencia = () => {
+  const agregar = () => {
     setData({
       ...data,
       experiencia: [
         ...data.experiencia,
-        {
-          puesto: "",
-          empresa: "",
-          fechaInicio: "",
-          fechaFin: "",
-          descripcion: "",
-        },
+        { empresa: "", jefe: "", cargo: "", fechaInicio: "", fechaFin: "", lugar: "", telefono: "", descripcion: "" },
       ],
     });
   };
 
-  const actualizarExperiencia = (index, campo, valor) => {
-    const nuevaExperiencia = [...data.experiencia];
-    nuevaExperiencia[index][campo] = valor;
-    setData({ ...data, experiencia: nuevaExperiencia });
+  const actualizar = (index, campo, valor) => {
+    const nueva = [...data.experiencia];
+    nueva[index][campo] = valor;
+    setData({ ...data, experiencia: nueva });
   };
 
-  const eliminarExperiencia = (index) => {
-    const nuevaExperiencia = data.experiencia.filter((_, i) => i !== index);
-    setData({ ...data, experiencia: nuevaExperiencia });
+  const eliminar = (index) => {
+    setData({ ...data, experiencia: data.experiencia.filter((_, i) => i !== index) });
   };
 
   return (
@@ -33,59 +27,59 @@ function ExperienceSection({ data, setData }) {
       <h2>🏢 Experiencia Laboral</h2>
       {data.experiencia.map((exp, index) => (
         <div key={index} className="item-card">
-          <button
-            className="delete-btn"
-            onClick={() => eliminarExperiencia(index)}
-          >
-            ✕
-          </button>
-          <input
-            type="text"
-            placeholder="Puesto"
-            value={exp.puesto}
-            onChange={(e) =>
-              actualizarExperiencia(index, "puesto", e.target.value)
-            }
-          />
+          <button className="delete-btn" onClick={() => eliminar(index)}>×</button>
           <input
             type="text"
             placeholder="Empresa"
-            value={exp.empresa}
-            onChange={(e) =>
-              actualizarExperiencia(index, "empresa", e.target.value)
-            }
+            value={exp.empresa || ""}
+            onChange={(e) => actualizar(index, "empresa", e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Jefe Inmediato"
+            value={exp.jefe || ""}
+            onChange={(e) => actualizar(index, "jefe", e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Cargo / Puesto"
+            value={exp.cargo || exp.puesto || ""}
+            onChange={(e) => actualizar(index, "cargo", e.target.value)}
           />
           <div className="date-row">
-            <input
-              type="text"
-              placeholder="Fecha inicio (ej: Ene 2020)"
-              value={exp.fechaInicio}
-              onChange={(e) =>
-                actualizarExperiencia(index, "fechaInicio", e.target.value)
-              }
+            <DatePickerCO
+              label="Fecha inicio"
+              value={exp.fechaInicio || ""}
+              onChange={(val) => actualizar(index, "fechaInicio", val)}
             />
-            <input
-              type="text"
-              placeholder="Fecha fin (ej: Actual)"
-              value={exp.fechaFin}
-              onChange={(e) =>
-                actualizarExperiencia(index, "fechaFin", e.target.value)
-              }
+            <DatePickerCO
+              label="Fecha fin"
+              value={exp.fechaFin || ""}
+              onChange={(val) => actualizar(index, "fechaFin", val)}
+              allowActualmente={true}
             />
           </div>
+          <input
+            type="text"
+            placeholder="Lugar / Ciudad"
+            value={exp.lugar || ""}
+            onChange={(e) => actualizar(index, "lugar", e.target.value)}
+          />
+          <input
+            type="tel"
+            placeholder="Celular de contacto empresa"
+            value={exp.telefono || ""}
+            onChange={(e) => actualizar(index, "telefono", e.target.value)}
+          />
           <textarea
-            placeholder="Descripción de responsabilidades y logros"
-            value={exp.descripcion}
-            onChange={(e) =>
-              actualizarExperiencia(index, "descripcion", e.target.value)
-            }
+            placeholder="Descripción de responsabilidades (opcional)"
+            value={exp.descripcion || ""}
+            onChange={(e) => actualizar(index, "descripcion", e.target.value)}
             rows="3"
           />
         </div>
       ))}
-      <button className="add-btn" onClick={agregarExperiencia}>
-        + Agregar Experiencia
-      </button>
+      <button className="add-btn" onClick={agregar}>+ Agregar Experiencia</button>
     </section>
   );
 }

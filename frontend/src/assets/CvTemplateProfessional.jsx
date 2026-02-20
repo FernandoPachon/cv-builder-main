@@ -57,7 +57,7 @@ function CVTemplateProfessional({ data }) {
           <div className="reference-item-pro">
             <div className="ref-icon-pro">👤</div>
             <div>
-              <p className="ref-name-pro">Francisco Mercado</p>
+              <p className="ref-name-pro"><span>{data.nombre}</span></p>
               <p className="ref-detail-pro">Ensigna</p>
               <p className="ref-detail-pro">(316) 212-3456</p>
             </div>

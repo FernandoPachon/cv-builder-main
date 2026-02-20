@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import axios from "axios";
-import html2pdf from "html2pdf.js";
 import "./App.css";
 
 // Importar componentes
@@ -13,6 +12,8 @@ import CVTemplateClassic from "./assets/CvTemplateClassic";
 import CVTemplateProfessional from "./assets/CvTemplateProfessional";
 import CVTemplateModern from "./assets/CvTemplateModern";
 import ColorSelector from "./assets/ColorSelector";
+import ReferenciasPersonalesSection from "./assets/Referenciaspersonalessection";
+import ReferenciasFamiliaresSection from "./assets/Referenciasfamiliaressection";
 // Importar imagen de fondo para página 1 del clásico
 let HvPortalBg;
 try {
@@ -27,7 +28,10 @@ function App() {
     nombre: "",
     apellidos: "",
     cedula: "",
-    lugarNacimiento:"",
+    lugarNacimiento: "",
+    lugarExpedicion: "",
+    identificacion: "",
+    direccion: "",
     fechaNacimiento: "",
     estadoCivil: "Soltero",
     email: "",
@@ -38,6 +42,8 @@ function App() {
     experiencia: [],
     educacion: [],
     habilidades: [],
+    referenciasPersonales: [],
+    referenciasFamiliares: [],
     // Archivos
     foto: null,
     documentosAnexos: [], // Array de documentos (simple o doble cara)
@@ -66,32 +72,25 @@ function App() {
     }
   };
 
-const descargarPDF = () => {
-  const opciones = {
-    margin: 0,
-    filename: `CV_${data.nombre}_${data.apellidos}.pdf`,
-    image: { type: "jpeg", quality: 1.0 },
-    html2canvas: {
-      scale: 3,
-      useCORS: true,
-      allowTaint: true,
-      scrollY: 0,
-      scrollX: 0,
-      logging: false,
-    },
-    jsPDF: {
-      unit: "px",
-      format: [612, 792],
-      orientation: "portrait",
-      hotfixes: ["px_scaling"],
-    },
-    pagebreak: {
-      mode: ["css", "legacy"],
-      after: ".hv-clasica-page",
-    },
+  const descargarPDF = () => {
+    const nombreArchivo =
+      "CV_" +
+      (data.nombre && data.apellidos
+        ? `${data.nombre}_${data.apellidos}`
+        : "HojaDeVida"
+      ).replace(/\s+/g, "_");
+
+    const tituloOriginal = document.title;
+    document.title = nombreArchivo;
+    // Agregar clase que elimina márgenes y fondos grises entre páginas
+    document.body.classList.add("printing");
+    window.print();
+    setTimeout(() => {
+      document.title = tituloOriginal;
+      document.body.classList.remove("printing");
+    }, 1000);
   };
-  html2pdf().set(opciones).from(cvRef.current).save();
-};
+
   return (
     <div className="app-container">
       {/* Panel de edición */}
@@ -115,6 +114,10 @@ const descargarPDF = () => {
         <EducationSection data={data} setData={setData} />
 
         <SkillsSection data={data} setData={setData} />
+
+        <ReferenciasPersonalesSection data={data} setData={setData} />
+
+        <ReferenciasFamiliaresSection data={data} setData={setData} />
 
         <DocumentUploadSection data={data} setData={setData} />
 

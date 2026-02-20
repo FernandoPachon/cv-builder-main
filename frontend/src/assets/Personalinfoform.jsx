@@ -1,30 +1,11 @@
 import React from "react";
-
-const MESES = [
-  "enero", "febrero", "marzo", "abril", "mayo", "junio",
-  "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-];
-
-function formatearFecha(valorISO) {
-  if (!valorISO) return "";
-  const [anio, mes, dia] = valorISO.split("-");
-  return `${parseInt(dia)} de ${MESES[parseInt(mes) - 1]} de ${anio}`;
-}
-
-function fechaAISO(textoFecha) {
-  // Convierte "5 de noviembre de 1996" → "1996-11-05" para el input
-  if (!textoFecha || textoFecha.includes("-")) return textoFecha;
-  const match = textoFecha.match(/(\d+) de (\w+) de (\d{4})/i);
-  if (!match) return "";
-  const dia = match[1].padStart(2, "0");
-  const mes = (MESES.indexOf(match[2].toLowerCase()) + 1).toString().padStart(2, "0");
-  return `${match[3]}-${mes}-${dia}`;
-}
+import DatePickerCO from "./Datepickerco";
 
 function PersonalInfoForm({ data, setData }) {
   return (
     <section className="editor-section">
       <h2>📋 Información Personal</h2>
+
       <input
         type="text"
         placeholder="Nombres"
@@ -39,24 +20,30 @@ function PersonalInfoForm({ data, setData }) {
       />
       <input
         type="text"
-        placeholder="Cédula (ej: 1.234.567.890)"
-        value={data.cedula}
-        onChange={(e) => setData({ ...data, cedula: e.target.value })}
+        placeholder="No. Identificación (ej: 1.121.939.448)"
+        value={data.identificacion || ""}
+        onChange={(e) => setData({ ...data, identificacion: e.target.value })}
       />
-      <label style={{fontSize:"13px", fontWeight:"600", color:"#34495e", marginBottom:"4px", display:"block"}}>
-        Fecha de Nacimiento
-      </label>
       <input
-        type="date"
-        value={fechaAISO(data.fechaNacimiento)}
-        onChange={(e) => setData({ ...data, fechaNacimiento: formatearFecha(e.target.value) })}
-        style={{marginBottom:"12px"}}
+        type="text"
+        placeholder="Lugar de Expedición C.C. (ej: Aguazul)"
+        value={data.lugarExpedicion || ""}
+        onChange={(e) => setData({ ...data, lugarExpedicion: e.target.value })}
       />
-      {data.fechaNacimiento && (
-        <small style={{display:"block", marginTop:"-8px", marginBottom:"12px", color:"#7f8c8d", fontSize:"12px"}}>
-          📅 Se guardará como: <strong>{data.fechaNacimiento}</strong>
-        </small>
-      )}
+
+      <DatePickerCO
+        label="Fecha de Nacimiento"
+        value={data.fechaNacimiento}
+        onChange={(val) => setData({ ...data, fechaNacimiento: val })}
+      />
+
+      <input
+        type="text"
+        placeholder="Lugar de Nacimiento (ej: Aguazul - Casanare)"
+        value={data.lugarNacimiento || ""}
+        onChange={(e) => setData({ ...data, lugarNacimiento: e.target.value })}
+      />
+
       <select
         value={data.estadoCivil}
         onChange={(e) => setData({ ...data, estadoCivil: e.target.value })}
@@ -67,11 +54,12 @@ function PersonalInfoForm({ data, setData }) {
         <option value="Divorciado">Divorciado/a</option>
         <option value="Viudo">Viudo/a</option>
       </select>
+
       <input
-        type="email"
-        placeholder="Email"
-        value={data.email}
-        onChange={(e) => setData({ ...data, email: e.target.value })}
+        type="text"
+        placeholder="Dirección de Residencia (ej: Calle 22 # 23-22)"
+        value={data.direccion || ""}
+        onChange={(e) => setData({ ...data, direccion: e.target.value })}
       />
       <input
         type="tel"
@@ -81,15 +69,15 @@ function PersonalInfoForm({ data, setData }) {
       />
       <input
         type="text"
-        placeholder="Dirección de Residencia"
+        placeholder="Ciudad / Municipio (ej: Aguazul - Casanare)"
         value={data.ubicacion}
         onChange={(e) => setData({ ...data, ubicacion: e.target.value })}
       />
       <input
-        type="text"
-        placeholder="Ciudad"
-        value={data.ciudad}
-        onChange={(e) => setData({ ...data, ciudad: e.target.value })}
+        type="email"
+        placeholder="Email"
+        value={data.email}
+        onChange={(e) => setData({ ...data, email: e.target.value })}
       />
     </section>
   );
